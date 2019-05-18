@@ -69,11 +69,11 @@ p {
 }
 
 a {
-  color: $red;
+  color: $blue;
   text-decoration: none;
 	cursor: pointer;
   &:hover, &:active {
-    color: $red;
+    color: $blue;
   }
 }
 
@@ -165,8 +165,8 @@ img {
 
 .site-avatar {
   float: left;
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   margin-right: 15px;
 
   @include mobile {
@@ -196,7 +196,7 @@ img {
   cursor: pointer;
   font-family: $helveticaNeue;
   font-weight: 300;
-  font-size: 28px;
+  font-size: 30px;
   letter-spacing: 1px;
 }
 
