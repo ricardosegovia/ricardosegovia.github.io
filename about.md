@@ -1,15 +1,16 @@
 ---
 layout: page
-title: About
+title: 
 permalink: /about/
 ---
 
-Some information about you!
+Biologist
 
-### More Information
+### Projects
 
-A place to include any other types of information that you'd like to include about yourself.
+Spermatophyte genus-level global phylogeny, in collaboration with Kyle Dexter
+Southern South America forests plots, in collaboration with Rodrigo Chaura
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[segoviacortes@gmail.com](mailto:segoviacortes@gmail.com)
