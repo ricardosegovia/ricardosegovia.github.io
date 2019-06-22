@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (20/05/2019) New Preprint
+title: (20/05/2019) New Paper
 ---
 
-New preprint entitled <a href="https://www.preprints.org/manuscript/201902.0018/v1">"Comparing Measures of Community Lineage Diversity across North American Forests"</a>. Please read it and comment!!
+New article published in \textit{Forests} journal entitled <a href="https://www.mdpi.com/1999-4907/10/6/520">"Exploring the Concept of Lineage Diversity across North American Forests"</a>.
