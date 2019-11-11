@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (20/05/2019) New Paper
+title: (11/11/2019) New Preprint
 ---
 
-New article published in _Forests_ journal entitled <a href="https://www.mdpi.com/1999-4907/10/6/520">"Exploring the Concept of Lineage Diversity across North American Forests"</a>.
+New Preprint <a href="https://www.biorxiv.org/content/10.1101/836338v1">"MAT drives the variation in maximum potential species richness and frost organizes the residual variation"</a>.
