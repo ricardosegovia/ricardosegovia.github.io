@@ -1,6 +1,6 @@
 ---
 layout: tutorial
-title: Intro to the Google Earth Engine
+title: Introduccion a Google Earth Engine
 ---
 
 # Tutorial Aims:
