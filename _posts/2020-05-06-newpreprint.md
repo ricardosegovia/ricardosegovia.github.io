@@ -50,3 +50,32 @@ __[Go to the Earth Engine to start your GEE journey!](https://code.earthengine.g
 _Take a moment to familiarise yourself with the layout of the Earth Engine editor - like when first starting to learn a new language, it can seem like a lot to take in at once! With your blank script, have a go at exploring the different tabs. Notice how if you draw polygons or drop points, they will appear in your script. You can go to the `Inspector` tab, click on a place in the map, and see what information is available for it. Here is an outline of what most of the tabs do:_
 
 ![Google Earth Engine webUI layout annotated]({{ site.baseurl }}/images/gee_layout.png)
+
+# 4. Learn the basic principles of JavaScript
+{: #javascript}
+
+__The Google Earth Engine uses the programming language [JavaScript](https://en.wikipedia.org/wiki/JavaScript).__
+
+Similarly to other programming languages, there is support online - you can google `JavaScript` and Earth Engine tutorials. It will all seem unfamiliar at first, but thanks to the online programming community, you very rarely start completely from scratch - i.e., don't feel bad about yourself because you can't just think of the correct `JavaScript` code from the top of your head straight away.
+
+We'll introduce you to more about `JavaScript` syntax and functions as we go along with the tutorial, but for now, here a few notes:
+
+Lines of code in `JavaScript` finish with a `;` - note that code for e.g. defining a variable can be spread over multiple lines, but you only need to put a `;` at the end of the last line of the code chunk.
+
+To define new variables, you use:
+
+```javascript
+var new_variable = ...
+```
+
+You'll see variants of this code at multiple places throughout the script we will create later. Essentially, when you import datasets, create new layers, calculate new values, all those need to be stored as varibles so that you can map them, export them, etc.
+
+To add comments in your script, use `//`. For example, at the start of your blank new script (if you created any polygons or points while you were exploring, you can make a new script now to start "clean"). Like when coding in other programming languages, it's great to leave comments to make sure your script outlines who you are, what the aim of the script is and why you are following the specific workflow. Here are a few example comments - you can write up something similar in your script:
+
+```javascript
+// Calculating forest cover change in protected areas around the world
+// Gergana Daskalova
+// 26th Nov 2018
+```
+
+__In JavaScript, you have to run your entire script at once - that is, you can't, for example, select two lines of your script and run just those, you have to run the whole thing. You "run" a script by pressing the `Run` button. This means that throughout your tutorial, as you add more lines to your script, you have to keep pressing `Run` to see the results of the new code you've added.__
