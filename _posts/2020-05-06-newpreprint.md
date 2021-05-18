@@ -16,14 +16,13 @@ title: (18/05/2021) Tutorial - Google Earth Engine
 9. [Otros análisis y visualización en R](#R)
 
 
-{% capture callout %}
+
 All the files you need to complete this tutorial will be generated and exported from the GEE during the course of the tutorial.
 
 [Follow this link](https://signup.earthengine.google.com/) to register for the Google Earth Engine - it is free.
 
 Say what you'll be using the GEE for - for research, education, etc. It might take a few hours or a day or so for your registration to be approved.
-{% endcapture %}
-{% include callout.html content=callout colour=alert %}
+
 
 # 1. Learn what the Google Earth Engine is
 {: #intro}
