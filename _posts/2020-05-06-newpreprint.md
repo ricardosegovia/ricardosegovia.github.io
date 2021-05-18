@@ -67,6 +67,7 @@ To define new variables, you use:
 ```javascript
 var new_variable = ...
 ```
+{: #code-example-1}
 
 You'll see variants of this code at multiple places throughout the script we will create later. Essentially, when you import datasets, create new layers, calculate new values, all those need to be stored as varibles so that you can map them, export them, etc.
 
