@@ -3,6 +3,8 @@ layout: post
 title: (18/05/2021) Tutorial - Google Earth Engine
 ---
 
+[Tutorial modificado de https://ourcodingclub.github.io/]
+
 # Objetivos:
 
 1. [Aprender qué es Google Eath Engine](#intro)
@@ -19,7 +21,7 @@ title: (18/05/2021) Tutorial - Google Earth Engine
 
 Todos los archivos que necesitas para completar este tutorial serán generados y exportados desde el GEE durante el transcurso del mismo.
 
-[Sigue este link](https://signup.earthengine.google.com/) para registrarse en el motor de Google Earth - es gratis!!
+[Sigue este link](https://signup.earthengine.google.com/) para registrarse en Google Earth Engine.
 
 Necesitan que digas para qué va a utilizar GEE: "participar de un tutorial introductorio". El registro puede tardar unas horas o un día más o menos en ser aprobado.
 
