@@ -99,139 +99,141 @@ Para importar el conjunto de datos de áreas protegidas (polígonos de las área
 
 ![Earth Engine import data screenshot]({{ site.baseurl }}/images/gee_import.png)
 
-__Select `Import`.__
+__Selecciona `Import`.__
 
-Your imported dataset appears at the top of the script - it's currently called `table` which is not particularly informative, so you can rename that something else, e.g., `parks`.
+EL nuevo conjunto de datos importado aparece en la parte superior del script - actualmente se llama "table", lo que no es particularmente informativo, por lo que puede cambiar el nombre a otra cosa, por ejemplo, "parks".
 
 ![Earth Engine new script screenshot]({{ site.baseurl }}/images/new_script.png)
 
-__Remember to save your script and to save it often! Once you've saved it, you'll see the file appear on the left under your scripts tab.__
+__Acuérdate de guardar tu script y de guardarlo a menudo. Una vez que lo hayas guardado, verás que el archivo aparece a la izquierda en la pestaña de tus scripts.__
 
-## Visualise protected areas around the world
+## Visualiza las áreas protegidas de todo el mundo
 
-Next up, we'll use the `Map` function to map the dataset and we will add a layer. You can then turn that layer on and off from the layer tab in the top right corner of the map window. You can also change the opacity.
+A continuación, utilizaremos la función `Map` para mapear el conjunto de datos y añadiremos una capa. Puedes activar y desactivar esa capa desde la pestaña de capas en la esquina superior derecha de la ventana del mapa. También puedes cambiar la opacidad.
 
 ```javascript
-// If you want to visualise the PAs around the world, you can use:
+// si quieres visualizar las AP en todo el mundo, puedes utilizar
 Map.addLayer(parks);
-// Takes a while to load! Remember you need to press "Run" to see the results.
+// Tarda un poco en cargar! Recuerda que tienes que pulsar "Run" para ver los resultados.
 ```
 
-__Go to the `Inspector` tab, click on a point somewhere on the map and check out the `features` of that point - the name of the protected area, its area, when it was established, etc.__
+__Vaya a la pestaña `Inspector`, haga clic en un punto del mapa y compruebe las `características` de ese punto: el nombre de la zona protegida, su superficie, cuándo se estableció, etc.__
 
-Move around the world, find a national park and "inspect" it - can you find the name, area, etc. - all this information is under the `Inspector` tab.
+Muévete por el mundo, encuentra un parque nacional e "inspecciónalo": ¿puedes encontrar el nombre, la zona, etc.? - Toda esta información está en la pestaña `Inspector`.
 
 ![Earth Engine Inspector layout screenshot]({{ site.baseurl }}/images/map_inspect.png)
 
-## Import and explore a dataset in the GEE - forest cover change
+## Importar y explorar un conjunto de datos en el GEE - cambio de la cubierta forestal
 
-Similarly to how you imported the protected area dataset, go to the search tab, type in `global forest change` and select the [Hansen et al. dataset](http://science.sciencemag.org/content/342/6160/850).
+De forma similar a como importó el conjunto de datos de áreas protegidas, vaya a la pestaña de búsqueda, escriba `Global Forest Change` y seleccione la opción [Hansen et al. dataset](http://science.sciencemag.org/content/342/6160/850).
 
-Take a look at the different types of information held within this dataset - that will help you familiarise yourself with what to expect from our analyses later on.
+Eche un vistazo a los diferentes tipos de información que contiene este conjunto de datos: eso le ayudará a familiarizarse con lo que puede esperar de los análisis más adelante.
 
 ![Earth Engine data product information screenshot]({{ site.baseurl }}/images/hansen_data.png)
 
-__Call the object `gfc`, or whatever else you wish, but remember that if you call it something else, you have to change `gfc` to your new name in all the code coming up! Next up, we will again map our dataset.__
+__Llama al objeto `gfc`, o lo que quieras, pero recuerda que si lo llamas de otra manera, tienes que cambiar `gfc` por tu nuevo nombre en todo el código que viene. A continuación, volveremos a mapear nuestro conjunto de datos.__
 
 ```javascript
-// Add the Global Forest Change dataset
+// agrega el Global Forest Change
 Map.addLayer(gfc);
 ```
 
 ![Earth Engine map output screenshot]({{ site.baseurl }}/images//map_hansen.png)
 
-Currently, we just have a black and red map - black for the places where there are no forests, and red from the places that do have forest cover. This is not terribly informative and over the course of the tutorial we will work on making this map better!
+Actualmente, sólo tenemos un mapa negro y rojo - negro para los lugares donde no hay bosques, y rojo de los lugares que tienen cobertura forestal. Esto no es muy informativo y a lo largo del tutorial trabajaremos para mejorar este mapa.
 
-__Go to the `Inspector` tab again, click on a point somewhere on the red parts map and check out the `features` of the forest cover change layer. If it says `loss: 0`, `gain: 0`, that means that, in this specific pixel, no forest loss or gain has occurred.__
+__Vaya de nuevo a la pestaña `Inspector`, haga clic en un punto del mapa de partes rojas y compruebe las `características` de la capa de cambio de la cubierta forestal. Si dice `pérdida: 0`, `ganancia: 0`, significa que, en este píxel específico, no se ha producido ninguna pérdida o ganancia de bosque.__
 
-You can also turn layers on and off, and you can "comment out" certain parts of the code if you don't want that action to be performed every single time you rerun the script. For example, mapping the protected area dataset takes quite a while, so if you didn't want to do that multiple times, you can add `//` in front of that line of code. You can always remove the `//` when you do wish to map those data again. Like this:
+También puedes activar y desactivar las capas, y puedes "comentar" ciertas partes del código si no quieres que esa acción se realice cada vez que vuelvas a ejecutar el script. Por ejemplo, el mapeo del conjunto de datos del área protegida lleva bastante tiempo, así que si no quieres hacerlo varias veces, puedes añadir `//` delante de esa línea de código. Siempre puede eliminar el `//` cuando desee volver a mapear esos datos. Así:
 
 ```javascript
-// If you want to visualise the PAs around the world, you can use:
+// si quieres visualizar las AP en todo el mundo, puedes utilizar
 // Map.addLayer(parks);
 ```
 
-__If you want to turn lots of code lines into comments or turn lots of comments back into code, you can use a keyboard shortcut `Cmd + /` on a `Mac` and `Ctrl + /` on a `Windows` computer.__
+__Si quieres convertir muchas líneas de código en comentarios o volver a convertir muchos comentarios en código, puedes utilizar un atajo de teclado `Cmd + /` en un `Mac` y `Ctrl + /` en un ordenador `Windows`.__
 
-We are now ready to improve our map and derive quantitative values for forest loss and gain!
+Ahora estamos preparados para mejorar nuestro mapa y obtener valores cuantitativos de pérdida y ganancia de bosque.
+
 
 # 6. Visualizar cambio de cobertura forestal
 {: #visualise}
 
-First, it's good practice to define the scale of your analyses - in our case, it's 30 m, the resolution of the Global Forest Change dataset. If a given pixel has experienced forest loss, this means that somewhere in that 30 m x 30 m square, there were decreases in forest cover.
+En primer lugar, es una buena práctica definir la escala de sus análisis: en nuestro caso, es de 30 m, la resolución del conjunto de datos de Global Forest Change. Si un píxel determinado ha sufrido una pérdida de bosque, significa que en algún lugar de ese cuadrado de 30 m x 30 m se ha producido una disminución de la cubierta forestal.
 
-You can also set the scale to automatically detect the resolution of the dataset and use that as your scale.
+También puede escribir una funcion que detecte automáticamente la resolución del conjunto de datos y la utilice como escala.
 
-Type up the following code in your script:
+Escriba el siguiente código en su script:
 
 ```javascript
-// Set the scale for our calculations to the scale of the Hansen dataset
-// which is 30m
+// Ajuste la escala de nuestros cálculos a la escala del conjunto de datos de Hansen
+// que es 30m
 var scale = gfc.projection().nominalScale();
 ```
 
-__The next step is to create variables for the tree cover in 2000 (when the database starts), for the loss up until 2016 and the gain in forest cover, again up until 2016. In raster data, images usually have different "bands" (e.g., red, green, UV), and we can select which bands we want to work with. In this case, the different bands of the `gfc` object represent the forest cover, forest loss and forest gain, so we will make a variable for each.__
+__El siguiente paso es crear variables para la cubierta forestal en el año 2000 (cuando se inicia la base de datos), para la pérdida hasta 2016 y la ganancia de cubierta forestal, de nuevo hasta 2016. En los datos ráster, las imágenes suelen tener diferentes "bandas" (por ejemplo, rojo, verde, UV), y podemos seleccionar con qué bandas queremos trabajar. En este caso, las diferentes bandas del objeto `gfc` representan la cubierta forestal, la pérdida de bosque y la ganancia de bosque, por lo que haremos una variable para cada una.__
 
-__To do this, we will use the `select()` function. Note that unlike other programming languages like `R`, in `JavaScript` you put the object you want to apply the function to first, and then the actual function comes second.__
+__Para ello, utilizaremos la función `select()`. Ten en cuenta que, a diferencia de otros lenguajes de programación como `R`, en `JavaScript` pones primero el objeto al que quieres aplicar la función, y luego la función real viene en segundo lugar.__
 
 ```javascript
-// Create a variable for the original tree cover in 2000
+// Crear una variable para la cobertura arbórea original en 2000
 var treeCover = gfc.select(['treecover2000']);
 
-// Convert the tree cover layer because the treeCover by default is in
-// hundreds of hectares, but the loss and gain layers are just in hectares!
+// Convertir la capa de cobertura arbórea porque el treeCover por defecto está en
+// cientos de hectáreas, pero las capas de pérdida y ganancia son sólo en hectáreas!
+
 treeCover = treeCover.divide(100);
 
-// Create a variable for forest loss
+// Crear una variable para la pérdida de bosques
 var loss = gfc.select(['loss']);
 
-// Create a variable for forest gain
+// Crear una variable para la ganancia de bosque
 var gain = gfc.select(['gain']);
 ```
 
-## Make a global map of forest cover, forest loss and forest gain
+## Hacer un mapa global de la cubierta forestal, la pérdida de bosques y la ganancia de bosques
 
-Now that we have our three variables, we can create a layer for each of them and we can plot them using colours of our choice. We will use the same `Map.addLayer` function as before, but in addition to adding the object name, we will specify the colours and what we want to call the specific layers.
+Ahora que tenemos nuestras tres variables, podemos crear una capa para cada una de ellas y podemos trazarlas con los colores que queramos. Utilizaremos la misma función `Map.addLayer` que antes, pero además de añadir el nombre del objeto, especificaremos los colores y cómo queremos llamar a las capas específicas.
 
-_Note that we are also introducing a new function `updateMask()`. What this does is mask the areas there was no forest cover in the year 2000 - they become transparent, so instead of just blackness, we can see the seas, rivers, continent outlines, etc._
+_Tenga en cuenta que también introducimos una nueva función `updateMask()`. Lo que hace es enmascarar las zonas en las que no había cobertura forestal en el año 2000: se vuelven transparentes, por lo que en lugar de sólo oscuridad, podemos ver los mares, los ríos, los contornos de los continentes, etc._
 
 ```javascript
-// Add the tree cover layer in light grey
+// Añade la capa de cobertura de los árboles en gris claro
 Map.addLayer(treeCover.updateMask(treeCover),
     {palette: ['D0D0D0', '00FF00'], max: 100}, 'Forest Cover');
 
-// Add the loss layer in pink
+// Añadir la capa de pérdida en rosado
 Map.addLayer(loss.updateMask(loss),
             {palette: ['#BF619D']}, 'Loss');
 
-// Add the gain layer in yellow
+// Añadir la capa de ganancia en amarillo
 Map.addLayer(gain.updateMask(gain),
             {palette: ['#CE9E5D']}, 'Gain');
 ```
 
-Remember to click on `Run` so that you see your newly plotted maps. The forest layers might be easier to see if you either turn off the first two layers you plotted (the protected areas and the generic GFC layer), or you can keep the protected area layer on, but reduce the opacity by dragging the bar below that layer.
+Recuerde hacer clic en "Run" para ver los mapas recién trazados. Las capas del bosque pueden ser más fáciles de ver si desactiva las dos primeras capas que trazó (las áreas protegidas y la capa genérica de GFC), o puede mantener la capa de áreas protegidas, pero reducir la opacidad arrastrando la barra debajo de esa capa.
 
 ![Maps example]({{ site.baseurl }}/images/hansen_trio.png)
 
-You can specify colour using hex codes, those are the number and letter combinations in the code above, e.g. `#CE9E5D` is yellow. You can find examples of those online, for example [this website](https://htmlcolorcodes.com).
+Puede especificar el color utilizando códigos hexadecimales, que son las combinaciones de números y letras en el código anterior, por ejemplo, `#CE9E5D` es amarillo. Puedes encontrar ejemplos de ellos en Internet, por ejemplo [este sitio website](https://htmlcolorcodes.com).
 
 ![Hex colour picker screenshot]({{ site.baseurl }}/images/colours_hex.png)
 
-_You can also switch between map view and satellite view. If you zoom in enough and go to satellite view, you can actually start spotting some patterns, like forest loss along roads in the Amazon._
+_También puedes cambiar entre la vista de mapa y la vista de satélite. Si se amplía lo suficiente y se pasa a la vista de satélite, se pueden empezar a detectar algunos patrones, como la pérdida de bosques a lo largo de las carreteras en el Amazonas._
 
 ![Amazon forest deforestation map]({{ site.baseurl }}/images/amazon_forest.png)
 
 # 7. Calculaar el cambio en la cobertura forestal en lugares especificos
 {: #calculate}
 
-__So far we can see where forest loss and gain have occurred, so we know about the _extent_ of forest change, but we don't know about the _magnitude_ of forest change, so our next step is to convert the number of pixels that have experienced gain or loss (remember that they are just 0 or 1 values, 0 for no, 1 for yes) into areas, e.g. square kilometers.__
+__Hasta ahora podemos ver dónde se ha producido la pérdida y la ganancia de bosque, por lo que conocemos la _extensión_ del cambio forestal, pero no sabemos la _magnitud_ del cambio forestal, por lo que nuestro siguiente paso es convertir el número de píxeles que han experimentado ganancia o pérdida (recuerde que son sólo valores 0 o 1, 0 para el no, 1 para el sí) en áreas, por ejemplo, kilómetros cuadrados.__
 
-For each of the variables we created earlier (forest cover, forest loss and forest gain), we will now create new variables representing the _areas_ of forest cover, loss and gain. To achieve this, we will use the `ee.Image.pixelArea()` function, and we have to `multiply` our original variables (e.g., `treeCover`), similar to when you convert from meters to centimeters, you would miltiply by 100. Here we want the area to be in square kilometers, so to go from square meters to square kilometers, we will also divide by 1 000 000. Finally, we select the first band from our new variables - the areas of forest cover, loss and gain, respectively.
+Para cada una de las variables que hemos creado antes (cobertura forestal, pérdida de bosque y ganancia de bosque), crearemos ahora nuevas variables que representen las _áreas_ de cobertura forestal, pérdida y ganancia. Para ello, utilizaremos la función `ee.Image.pixelArea()`, y tenemos que `multiplicar` nuestras variables originales (por ejemplo, `treeCover`), de forma similar a cuando conviertes de metros a centímetros, que multiplicarías por 100. Aquí queremos que el área esté en kilómetros cuadrados, así que para pasar de metros cuadrados a kilómetros cuadrados, también dividiremos por 1 000 000. Por último, seleccionamos la primera banda de nuestras nuevas variables: las áreas de cobertura forestal, pérdida y ganancia, respectivamente.
 
 ```javascript
-// The units of the variables are numbers of pixels
-// Here we are converting the pixels into actual area
-// Dividing by 1 000 000 so that the final result is in km2
+// Las unidades de las variables son números de píxeles
+// Aquí convertimos los píxeles en superficie real
+// Dividiendo por 1 000 000 para que el resultado final sea en km2
 var areaCover = treeCover.multiply(ee.Image.pixelArea())
                 .divide(1000000).select([0],["areacover"]);
 
@@ -242,15 +244,15 @@ var areaGain = gain.gt(0).multiply(ee.Image.pixelArea()).multiply(treeCover)
               .divide(1000000).select([0],["areagain"]);
 ```
 
-### Calculate forest loss and gain in specific areas
+### Calcular la pérdida y la ganancia de bosques en zonas específicas
 
-Often we are interested in extracting values from geospatial data for specific places around the world. Here, our question was about changes in forest cover in national parks, so to answer that, we need to calculate how much forest cover change has occurred in just our chosen national parks, not the whole world.
+A menudo nos interesa extraer valores de los datos geoespaciales de lugares concretos del mundo. En este caso, nuestra pregunta se refería a los cambios en la cubierta forestal de los parques nacionales, por lo que, para responderla, tenemos que calcular cuánto ha cambiado la cubierta forestal sólo en los parques nacionales que hemos elegido, no en todo el mundo.
 
-The first step is to create a filtered variable that contains our areas of interest. Here, we will filter our original `parks` variable that includes all the protected areas in the world, down to just four protected areas. We will use `ee.Filter.or()` to add multiple filtering conditions.
+El primer paso es crear una variable filtrada que contenga nuestras áreas de interés. En este caso, filtraremos nuestra variable original `parks`, que incluye todas las áreas protegidas del mundo, para reducirlas a sólo cuatro áreas protegidas. Utilizaremos `ee.Filter.or()` para añadir múltiples condiciones de filtrado.
 
 ```javascript
-// Create a variable that has the polygons for just a few
-// national parks and nature reserves
+// Crear una variable que tenga los polígonos de sólo unos
+// parques nacionales y reservas naturales
 var parks = parks.filter(ee.Filter.or(
     ee.Filter.eq("NAME", "Yellowstone"),
     ee.Filter.eq("NAME", "Sankuru"),
@@ -258,17 +260,17 @@ var parks = parks.filter(ee.Filter.or(
     ee.Filter.eq("NAME", "Redwood")));
 ```
 
-Now we are ready to calculate the areas of forest loss and gain, exciting times! We will use what in GEE lingo is called a "reducer" - a summarising function. We will apply that to our `parks` variable and we will use the scale we defined earlier (30m, the resolution of the dataset). The results will be stored in two new variables, `statsLoss` and `statsGain`.
+Ahora estamos preparados para calcular las áreas de pérdida y ganancia de bosque. Utilizaremos lo que en la jerga de GEE se llama "reducer", una función de resumen. La aplicaremos a nuestra variable "parks" y utilizaremos la escala que hemos definido antes (30 m, la resolución del conjunto de datos). Los resultados se almacenarán en dos nuevas variables, `statsLoss` y `statsGain`.
 
 ```javascript
-// Sum the values of loss pixels.
+// Suma los valores de los píxeles de pérdida.
 var statsLoss = areaLoss.reduceRegions({
   reducer: ee.Reducer.sum(),
   collection: parks,
   scale: scale
 });
 
-// Sum the values of gain pixels.
+// Suma los valores de los píxeles de ganancia.
 var statsGain = areaGain.reduceRegions({
   reducer: ee.Reducer.sum(),
   collection: parks,
@@ -279,11 +281,11 @@ var statsGain = areaGain.reduceRegions({
 # 8. Exportar resultados - Crear tablas
 {: #export}
 
-At this stage, we have calculated the areas of forest loss and gain in our chosen protected areas, but we haven't actually seen or visualised those numbers.
+En esta fase, hemos calculado las áreas de pérdida y ganancia de bosque en las zonas protegidas que hemos elegido, pero no hemos visto ni visualizado esas cifras.
 
-We can export `.csv` files of our results, in this case they will go to your Google Drive account. Add the code below to your script and press `Run` again. You will see that the `Task` tab lights up, go check it out. You will have two tasks and you have to press the `Run` button next to them (otherwise the tasks are ready for you, but you haven't actually initiated their completion), then you'll start seeing a timer - that reflects how much time has passed since you started the task. Depending on your task it can take seconds to hours. Should be seconds in our case!
+Podemos exportar archivos `.csv` de nuestros resultados, en este caso irán a tu cuenta de Google Drive. Añade el siguiente código a tu script y pulsa `Run` de nuevo. Verás que se ilumina la pestaña `Task`. Tendrás dos tareas y tendrás que pulsar el botón `Run` junto a ellas (si no las tareas están listas para ti, pero no has iniciado su realización), entonces empezarás a ver un temporizador - que refleja cuánto tiempo ha pasado desde que iniciaste la tarea. Dependiendo de la tarea, puede tardar desde segundos hasta horas. En nuestro caso, deberían ser segundos.
 
-__We use the curly brackets to specify which object we want to export and what we want to call the file, e.g. `NP_forest_loss`.__
+__Utilizamos las llaves para especificar qué objeto queremos exportar y cómo queremos llamar al archivo, por ejemplo `NP_forest_loss`.__
 
 ```javascript
 Export.table.toDrive({
@@ -295,62 +297,61 @@ Export.table.toDrive({
   description: 'NP_forest_gain'});
 ```
 
-![Save to Drive screenshot]({{ site.baseurl }}/assets/img/tutorials/earth-engine/drive.png)
+![Save to Drive screenshot]({{ site.baseurl }}/images/drive.png)
 
-_Go check out your files in your Google Drive. Scroll all the way right to see the `sum` column, which shows the area, in square kilometers, of forest loss or gain (depending on which file you are looking at)._
+_Ve a ver tus archivos en tu Google Drive. Desplázate hasta la derecha para ver la columna "sum", que muestra el área, en kilómetros cuadrados, de pérdida o ganancia de bosque (dependiendo del archivo que estés viendo)._
 
 # 9. Otros análisis y visualización en R
 {: #R}
 
-_We are keen to incorporate different platforms and languages in our analyses, playing to the strengths of each. `R` and `R` packages like `ggplot2` offer more flexibility in how you visualise your findings, so we will now switch over to `R` to make a barplot of forest loss and gain in the four protected areas we studied._
+_Queremos incorporar diferentes plataformas y lenguajes a nuestros análisis, aprovechando los puntos fuertes de cada uno. Los paquetes `R` y `R`, como `ggplot2`, ofrecen más flexibilidad a la hora de visualizar los resultados, así que ahora nos pasaremos a `R` para hacer un gráfico de barras de la pérdida y la ganancia de bosque en las cuatro áreas protegidas que estudiamos._
 
-Note: You can also make graphs in the Earth Engine, so this comes down to personal preferences and what works best for your own workflow. You can find tutorials on how to create graphs in the Earth Engine on [the Developers website](https://developers.google.com/earth-engine/charts).
+Nota: También se pueden hacer gráficos en Google Earth Engine, así que esto se reduce a las preferencias personales y lo que funciona mejor para su propio flujo de trabajo. Puedes encontrar tutoriales sobre cómo crear gráficos en GEE en [the Developers website](https://developers.google.com/earth-engine/charts).
 
-_Open up `RStudio` (or just `R` depending on your preferences) and start a new script by going to `File / New file / R Script`._ If you've never used `R` before, you can find our [intro to `R`]({{ site.baseurl }}/tutorials/intro-to-r/index.html) tutorial here.
+_Vamos a R._
 
 ```r
 # Load libraries ----
 library(ggplot2)
-devtools::install_github('Mikata-Project/ggthemr') # to install the ggthemr package
-# if you don't have it already
-library(ggthemr)  # to set a custom theme but non essential!
-library(forcats)  # to reorder categorical variables
+devtools::install_github('Mikata-Project/ggthemr') # instalar el ggthemr package
+library(ggthemr)  # Disenar tu propio tema
+library(forcats)  # Para reordenar variaables categoricas
 ```
 
-We can set a theme (changes the colours and background) for our plot using the `ggthemr` package. You can explore the different colour options [here](https://github.com/cttobin/ggthemr).
+Podemos establecer un tema (cambiar los colores y el fondo) para nuestro gráfico utilizando el paquete `ggthemr`. Puedes explorar las diferentes opciones de color [aqui](https://github.com/cttobin/ggthemr).
 
 ```r
-# Set theme for the plot
+# Establecer el tema de la trama
 ggthemr('dust', type = "outer", layout = "minimal")
 
-# This theme will now be applied to all plots you make, if you wanted to
-# get rid of it, use:
+# Este tema se aplicará ahora a todas los plots que hagas
+# Para deshacerte de él, utiliza
 # ggthemr_reset()
 
 ```
 
-Next up, set your working directory to wherever you saved the data we exported to Google Drive and read in the files.
+A continuación, establece tu directorio de trabajo en el lugar donde guardaste los datos que exportamos a Google Drive y lee los archivos.
 
 ```r
-# Read in the data ----
+# Leer los datos ----
 NP_forest_gain <- read.csv("NP_forest_gain.csv")
 NP_forest_loss <- read.csv("NP_forest_loss.csv")
 ```
 
-We will combine the two objects (the one for forest loss and the one for forest gain) so that we can visualise them in the same plot. We can create an "identifier" column so that we know which values refer to gain and which ones to loss in forest cover.
+Combinaremos los dos objetos (el de pérdida de bosque y el de ganancia de bosque) para poder visualizarlos en un mismo gráfico. Podemos crear una columna "identificadora" para saber qué valores se refieren a la ganancia y cuáles a la pérdida de cobertura forestal.
 
 ```r
-# Create identifier column for gain vs loss
+# Crear una columna de identificación para las ganancias y las pérdidas
 NP_forest_gain$type <- "Gain"
 NP_forest_loss$type <- "Loss"
 
-# Bind the objects together
+# Pega los objetos
 forest_change <- rbind(NP_forest_gain, NP_forest_loss)
 ```
 
-We can make a barplot to visualise the amount of forest cover lost and gained between 2000 and 2016 at our four study sites. Because a larger national park can loose more forest simply because it's larger (i.e., there is more of it to loose), we can visualise the forest change as % of the total park area. We do this in the code below by specifying `y = sum/GIS_AREA` (or you can make a new column in your data frame that has those percentages calculated in it if you wish).
+Podemos hacer un gráfico de barras para visualizar la cantidad de cubierta forestal perdida y ganada entre 2000 y 2016 en nuestros cuatro lugares de estudio. Dado que un parque nacional más grande puede perder más bosque simplemente porque es más grande (es decir, hay más bosque que perder), podemos visualizar el cambio de bosque como % de la superficie total del parque. Lo hacemos en el código siguiente especificando `y = sum/GIS_AREA`.
 
-The `ggthemr` theme we chose earlier gives the graph more of an infographic feel. If you need more standard formatting, you can add `+ theme_bw` or `+ theme_classic()` to your barplot code.
+
 
 ```r
 (forest_barplot <- ggplot(forest_change, aes(x = NAME, y = sum/GIS_AREA,
@@ -367,9 +368,9 @@ The `ggthemr` theme we chose earlier gives the graph more of an infographic feel
                                            linetype = "blank")))
 ```
 
-Note that putting your entire ggplot code in brackets () creates the plot and then shows it in the plot viewer. If you don't have the brackets, you've only created the object, but haven't visualised it. You would then have to call the object such that it will be displayed by just typing `forest_barplot` after you've created the "forest_barplot" object.
+Tenga en cuenta que al poner todo su código ggplot entre corchetes () se crea el gráfico y luego se muestra en el visor de gráficos. Si no tienes los corchetes, sólo has creado el objeto, pero no lo has visualizado. Entonces tendrías que llamar al objeto para que se visualice simplemente escribiendo `forest_barplot` después de haber creado el objeto "forest_barplot".
 
-We can use the `ggsave` function to save our graph. The file will be saved to wherever your working directory is, which you can check by running `getwd()` in the console.
+Podemos utilizar la función `ggsave` para guardar nuestro gráfico. El archivo se guardará en cualquier directorio de trabajo, que puedes comprobar ejecutando `getwd()` en la consola.
 
 ```r
 ggsave(forest_barplot, filename = "forest_barplot.png",
@@ -378,6 +379,4 @@ ggsave(forest_barplot, filename = "forest_barplot.png",
 
 ![Forest gain and loss bar plots]({{ site.baseurl }}/images/forest_barplot.png)
 
-__Now that we can see how much forest has been gained and lost in our protected areas of interest, we can go back to our original research question, how does forest change vary across protected areas, and we can see if we can spot any patterns - are there any types of protected areas that are more likely to loose forest?__
-
-We hope you've enjoyed your introduction to the Google Earth Engine! It's a very exciting tool and if you want to learn more, go check out the tutorials on the [Google Earth Engine Developers website](https://developers.google.com/earth-engine/tutorials)!
+__Ahora que podemos ver la cantidad de bosque que se ha ganado y perdido en nuestras áreas protegidas de interés, podemos volver a nuestra pregunta de investigación original, cómo varía el cambio de bosque entre las áreas protegidas, y podemos ver si podemos detectar algún patrón: ¿hay algún tipo de áreas protegidas que tienen más probabilidades de perder bosque?__
