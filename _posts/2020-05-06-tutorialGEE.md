@@ -39,7 +39,7 @@ __Desde el motor de Google Earth, puedes exportar archivos `.csv` de los valores
 
 __Con GEE es posible responder a preguntas de investigación de escala regional y global, o que requieren gran cantidad de datos geoespaciales, de una manera eficiente que antes no era posible. Más adelante veremos cómo explorar los conjuntos de datos con los que se puede trabajar en el GEE. También es posible importar tus propias imágenes georreferenciadas (como las fotos de las misiones de los drones).__ Puedes averiguar cómo importar tus propios datos rasterizados desde [esta página](https://developers.google.com/earth-engine/image_upload) en el sitio web de los desarrolladores del GEE.
 
-Por ejemplo, puede clasificar diferentes tipos de cobertura del suelo, puede calcular y extraer valores de características del paisaje como [NDVI](https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index) (Índice de Vegetación de Diferencia Normalizada) para el mundo, una región particular de interés, o muchas áreas diferentes alrededor del mundo. En realidad, las posibilidades son enormes, y aquí sólo estamos arañando la superficie al dar un ejemplo de cómo se puede utilizar la GEE para calcular el porcentaje de cada piso vegetacional protegido en el sistema de areas protegidas de Chile.
+Por ejemplo, puedes clasificar diferentes tipos de cobertura del suelo, puede calcular y extraer valores de características del paisaje como [NDVI](https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index) (Índice de Vegetación de Diferencia Normalizada) para el mundo, una región particular de interés, o muchas áreas diferentes alrededor del mundo. En realidad, las posibilidades son enormes, y aquí sólo estamos arañando la superficie al dar un ejemplo de cómo se puede utilizar la GEE para calcular el porcentaje de cada piso vegetacional protegido en el sistema de areas protegidas de Chile.
 
 __Puedes consultar los tutoriales en el [sitio web de Google Earth Engine Developers](https://developers.google.com/earth-engine/) si quieres aprender más y practicar tus habilidades con GEE.__
 
@@ -58,7 +58,7 @@ _Tómate un momento para familiarizarte con la interfaz del editor de Earth Engi
 
 __Google Earth Engine usa [JavaScript](https://en.wikipedia.org/wiki/JavaScript) como lenguaje de programación.__
 
-Al igual que ocurre con otros lenguajes de programación, existe apoyo en línea: puedes buscar en Google "tutoriales sobre `JavaScript` y Earth Engine" (siempre hay mas alternativas en ingles!). Al principio todo te parecerá poco familiar, pero gracias a la comunidad de programadores en línea, es muy raro que empieces a escribir un script completamente de cero.
+Al igual que ocurre con otros lenguajes de programación, existe apoyo en línea: puedes buscar en Google "tutoriales sobre `JavaScript` y Earth Engine" (siempre hay mas alternativas en inglés!). Al principio todo te parecerá poco familiar, pero gracias a la comunidad de programadores en línea, es muy raro que empieces a escribir un script completamente de cero.
 
 Aprenderás más sobre la sintaxis y las funciones de `JavaScript` a medida que avancemos en el tutorial, pero por ahora, aquí tienes algunas notas:
 
@@ -126,19 +126,23 @@ __Qué porcentaje de cada piso vegetacional esta presente dentro del sistema de 
 
 ## Importar y explorar un conjunto de datos en el GEE - pisos vegetacionales
 
-Ahora vamos a importar manualmente un conjunto de datos que no esta disponible en GEE. Descarga en el siguiente link los archivos necesarios para importar la [Clasificacion de Pisos de Vegetación Luebert Pliscoff](http://datos.cedeus.cl/layers/geonode:pisos_vegetacionales_pliscoff). Luego importalos en Assets>New, y sube los archivos asociados al .shp.
+Primero, vamos a limpiar nuestros scripts. Vamos a la ventana del medio y aprieten la flecha de la pestaña reset. Luego marquen clear script.
+
+Ahora vamos a importar manualmente un conjunto de datos que no esta disponible en GEE. Descarga en el siguiente link los archivos necesarios para importar la [Clasificacion de Pisos de Vegetación Luebert Pliscoff](http://datos.cedeus.cl/layers/geonode:pisos_vegetacionales_pliscoff). Descargar capa y luego descargar el shape comprimido. Luego los importamos en Assets>New, y sube los archivos asociados al .shp.
 
 ![Earth Engine data product information screenshot]({{ site.baseurl }}/images/assets.png)
 
 __Llama al objeto `pisos`, o lo que quieras, pero recuerda que si lo llamas de otra manera, tienes que cambiar `pisos` por tu nuevo nombre en todo el código que viene. A continuación, volveremos a mapear nuestro conjunto de datos.__
 
-Hacer este analisis para todo Chile toma mucho tiempo, asi que vamos a tomar muestras espaciales para discutir los resultados, yo voy a escoger la costa de la Region del Bio Bio, ustedes pueden escoger la que mas les interese.
+Hacer este analisis para todo Chile toma mucho tiempo, asi que vamos a tomar muestras espaciales para discutir los resultados, yo voy a escoger la costa de la Region del Bio Bio, ustedes pueden escoger la que mas les interese. No olvides llamar a poligono "area", su nombre por defecto es "geometry".
 
 ![Earth Engine data product information screenshot]({{ site.baseurl }}/images/areas2.png)
 
 ```javascript
 // agrega la capa de pisos_vegetacionales_pliscoff restringida a tu area de interes
 //importa pisos asset
+// Reemplaza segoviacortes, que es mu usuariom por el tuyo. Si no
+// lo recuerdas, puedes verlo en la pestana de scripts.
 var pisos = ee.FeatureCollection("users/segoviacortes/pisos")
               .filterBounds(area);
 // visualiza la capa de pisos
