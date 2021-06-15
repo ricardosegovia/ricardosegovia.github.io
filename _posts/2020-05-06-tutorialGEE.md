@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (18/05/2021) Tutorial - Google Earth Engine
+title: (25/06/2021) Tutorial - Google Earth Engine
 ---
 
 [Tutorial modificado de https://ourcodingclub.github.io/]
@@ -13,11 +13,9 @@ title: (18/05/2021) Tutorial - Google Earth Engine
 4. [Aprender los principios básicos del lenguaje JavaScript](#javascript)
 5. [Importar y explorar datos](#import)
 6. [Pisos vegetacionales y areas protegidas como un caso de estudio](#import2)
-7. [Visualizar cambio de cobertura forestal](#visualise)
-8. [Calculaar el cambio en la cobertura forestal en lugares especificos](#calculate)
-9. [Exportar resultados - Crear tablas](#export)
-10.[Otros análisis y visualización en R](#R)
-
+7. [Analisis](#visualise)
+8. [Exportar resultados - Crear tablas](#export)
+9. [Otros análisis y visualización en R](#R)
 
 
 Todos los archivos que necesitas para completar este tutorial serán generados y exportados desde el GEE durante el transcurso del mismo. Excepto el archivo _shape_ de Pisos Vegetacionales de Luebert & Pliscoff.
@@ -117,7 +115,7 @@ Muévete por el mundo, encuentra un parque nacional e "inspecciónalo": ¿puedes
 
 ![Earth Engine Inspector layout screenshot]({{ site.baseurl }}/images/map_inspect.png)
 
-# 6. Pisos Vegetacionales protegidos en Chile, como un caso de estudio
+# 6. Pisos vegetacionales y areas protegidas como un caso de estudio
 {: #import2}
 
 Como con cualquier análisis, no se trata tanto de los datos como de la pregunta de investigación, así que cuando empieces a explorar en GEE, recuerda tener en mente tus preguntas de investigación (o los objetivos de comunicación científica, ya que la GEE es muy buena para eso también).
