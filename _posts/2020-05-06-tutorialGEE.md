@@ -134,7 +134,7 @@ __Llama al objeto `pisos`, o lo que quieras, pero recuerda que si lo llamas de o
 
 Hacer este analisis para todo Chile toma mucho tiempo, asi que vamos a tomar muestras espaciales para discutir los resultados, yo voy a escoger la costa de la Region del Bio Bio, ustedes pueden escoger la que mas les interese.
 
-![Earth Engine data product information screenshot]({{ site.baseurl }}/images/area.png)
+![Earth Engine data product information screenshot]({{ site.baseurl }}/images/areas2.png)
 
 ```javascript
 // agrega la capa de pisos_vegetacionales_pliscoff restringida a tu area de interes
