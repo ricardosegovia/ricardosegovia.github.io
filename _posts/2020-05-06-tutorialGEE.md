@@ -11,15 +11,16 @@ title: (18/05/2021) Tutorial - Google Earth Engine
 2. [Aprender qué tipos de análisis podemos hacer](#analyses)
 3. [Familiarizarse con la interfaz de GEE](#layout)
 4. [Aprender los principios básicos del lenguaje JavaScript](#javascript)
-5. [Importar y explorar datos - xx como un caso de estudio](#import)
-6. [Visualizar cambio de cobertura forestal](#visualise)
-7. [Calculaar el cambio en la cobertura forestal en lugares especificos](#calculate)
-8. [Exportar resultados - Crear tablas](#export)
-9. [Otros análisis y visualización en R](#R)
+5. [Importar y explorar datos](#import)
+6. [Pisos vegetacionales y areas protegidas como un caso de estudio](#import2)
+7. [Visualizar cambio de cobertura forestal](#visualise)
+8. [Calculaar el cambio en la cobertura forestal en lugares especificos](#calculate)
+9. [Exportar resultados - Crear tablas](#export)
+10.[Otros análisis y visualización en R](#R)
 
 
 
-Todos los archivos que necesitas para completar este tutorial serán generados y exportados desde el GEE durante el transcurso del mismo.
+Todos los archivos que necesitas para completar este tutorial serán generados y exportados desde el GEE durante el transcurso del mismo. Excepto el archivo _shape_ de Pisos Vegetacionales de Luebert & Pliscoff.
 
 [Sigue este link](https://signup.earthengine.google.com/) para registrarse en Google Earth Engine.
 
@@ -38,12 +39,9 @@ __Desde el motor de Google Earth, puedes exportar archivos `.csv` de los valores
 # 2. Aprender qué tipos de análisis podemos hacer en GEE
 {: #analyses}
 
-__Con GEE, se puede responder a preguntas de investigación a gran escala de una manera eficiente que antes no era posible. Se pueden utilizar grandes conjuntos de datos geoespaciales para abordar una gran cantidad de cuestiones y retos a los que se enfrenta la humanidad en el mundo moderno. Más adelante veremos cómo explorar los conjuntos de datos con los que se puede trabajar en el GEE, y también es posible importar tus propias imágenes georreferenciadas (como las fotos de las misiones de los drones).__ Puedes averiguar cómo importar tus propios datos rasterizados desde [esta página](https://developers.google.com/earth-engine/image_upload) en el sitio web de los desarrolladores del GEE.
+__Con GEE es posible responder a preguntas de investigación de escala regional y global, o que requieren gran cantidad de datos geoespaciales, de una manera eficiente que antes no era posible. Más adelante veremos cómo explorar los conjuntos de datos con los que se puede trabajar en el GEE. También es posible importar tus propias imágenes georreferenciadas (como las fotos de las misiones de los drones).__ Puedes averiguar cómo importar tus propios datos rasterizados desde [esta página](https://developers.google.com/earth-engine/image_upload) en el sitio web de los desarrolladores del GEE.
 
-
-Por ejemplo, puede clasificar diferentes tipos de cobertura del suelo, puede calcular y extraer valores de características del paisaje como [NDVI](https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index) (Índice de Vegetación de Diferencia Normalizada) - para el mundo, una región particular de interés, o muchas áreas diferentes alrededor del mundo. En realidad, las posibilidades son enormes, y aquí sólo estamos arañando la superficie al dar un ejemplo de cómo se puede utilizar la GEE para calcular los cambios en la cubierta forestal a lo largo del tiempo.
-
-
+Por ejemplo, puede clasificar diferentes tipos de cobertura del suelo, puede calcular y extraer valores de características del paisaje como [NDVI](https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index) (Índice de Vegetación de Diferencia Normalizada) para el mundo, una región particular de interés, o muchas áreas diferentes alrededor del mundo. En realidad, las posibilidades son enormes, y aquí sólo estamos arañando la superficie al dar un ejemplo de cómo se puede utilizar la GEE para calcular el porcentaje de cada piso vegetacional protegido en el sistema de areas protegidas de Chile.
 
 __Puedes consultar los tutoriales en el [sitio web de Google Earth Engine Developers](https://developers.google.com/earth-engine/) si quieres aprender más y practicar tus habilidades con GEE.__
 
@@ -62,7 +60,7 @@ _Tómate un momento para familiarizarte con la interfaz del editor de Earth Engi
 
 __Google Earth Engine usa [JavaScript](https://en.wikipedia.org/wiki/JavaScript) como lenguaje de programación.__
 
-Al igual que ocurre con otros lenguajes de programación, existe apoyo en línea: puedes buscar en Google tutoriales sobre `JavaScript` y Earth Engine. Al principio todo te parecerá poco familiar, pero gracias a la comunidad de programadores en línea, es muy raro que empieces completamente de cero.
+Al igual que ocurre con otros lenguajes de programación, existe apoyo en línea: puedes buscar en Google "tutoriales sobre `JavaScript` y Earth Engine" (siempre hay mas alternativas en ingles!). Al principio todo te parecerá poco familiar, pero gracias a la comunidad de programadores en línea, es muy raro que empieces a escribir un script completamente de cero.
 
 Aprenderás más sobre la sintaxis y las funciones de `JavaScript` a medida que avancemos en el tutorial, pero por ahora, aquí tienes algunas notas:
 
@@ -74,7 +72,7 @@ Para definir nuevas variables, se utiliza:
 var new_variable = ...
 ```
 
-Verás variantes de este código en múltiples lugares a lo largo del script que crearemos más adelante. Esencialmente, cuando importas conjuntos de datos, creas nuevas capas, calculas nuevos valores, todos ellos necesitan ser almacenados como varibles para que puedas mapearlos, exportarlos, etc.
+Verás variantes de este código en múltiples lugares a lo largo del script que crearemos más adelante. Esencialmente, cuando importas conjuntos de datos, creas nuevas capas para calcular nuevos valores. Todos ellos necesitan ser almacenados como varibles para que puedas mapearlos, exportarlos, etc.
 
 Para añadir comentarios en tu script, utiliza `//`. Por ejemplo, al principio de tu nuevo script en blanco (si has creado algún polígono o punto mientras explorabas, puedes hacer un nuevo script ahora para empezar "limpio"). Al igual que cuando codificas en otros lenguajes de programación, es bueno dejar comentarios para asegurarte de que tu script resume quién eres, cuál es el objetivo del script y por qué estás siguiendo el flujo de trabajo específico. Aquí hay algunos comentarios de ejemplo - puedes escribir algo similar en tu script:
 
@@ -84,16 +82,10 @@ Para añadir comentarios en tu script, utiliza `//`. Por ejemplo, al principio d
 // 25th Junio 2020
 ```
 
-__En JavaScript, tienes que ejecutar todo el script a la vez - es decir, no puedes, por ejemplo, seleccionar dos líneas de tu script y ejecutar sólo esas, tienes que ejecutarlo todo. El script se "ejecuta" pulsando el botón `Run`. Esto significa que a lo largo de tu tutorial, a medida que agregas más líneas a tu script, tienes que seguir presionando `Run` para ver los resultados del nuevo código que has agregado.__
+__En JavaScript, tienes que ejecutar todo el script a la vez - es decir, no puedes, por ejemplo, seleccionar dos líneas de tu script y ejecutarlas independientemente como en otros lenguajes como _R_. El script se "ejecuta" pulsando el botón `Run`. Esto significa que a lo largo de tu tutorial, a medida que agregas más líneas a tu script, tienes que seguir presionando `Run` para ver los resultados del nuevo código que has agregado.__
 
-# 5. Importar y explorar datos - xx como un caso de estudio
+# 5. Importar y explorar datos
 {: #import}
-
-Como con cualquier análisis, no se trata tanto de los datos como de la pregunta de investigación, así que cuando empieces a explorar en GEE, recuerda tener en mente tus preguntas de investigación (o los objetivos de comunicación científica, ya que la GEE es muy buena para eso también).
-
-## Pregunta de investigación
-
-__Cómo ha cambiado la cobertura forestal en el sistema de areas protegidas de Chile?__
 
 ## Importar y explorar un conjunto de datos en el GEE - áreas protegidas
 
@@ -119,11 +111,20 @@ Map.addLayer(parks);
 // Tarda un poco en cargar! Recuerda que tienes que pulsar "Run" para ver los resultados.
 ```
 
-__Vaya a la pestaña `Inspector`, haga clic en un punto del mapa y compruebe las `características` de ese punto: el nombre de la zona protegida, su superficie, cuándo se estableció, etc.__
+__Anda a la pestaña `Inspector`, haga clic en un punto del mapa y compruebe las `características` de ese punto: el nombre de la zona protegida, su superficie, cuándo se estableció, etc.__
 
 Muévete por el mundo, encuentra un parque nacional e "inspecciónalo": ¿puedes encontrar el nombre, la zona, etc.? - Toda esta información está en la pestaña `Inspector`.
 
 ![Earth Engine Inspector layout screenshot]({{ site.baseurl }}/images/map_inspect.png)
+
+# 6. Pisos Vegetacionales protegidos en Chile, como un caso de estudio
+{: #import2}
+
+Como con cualquier análisis, no se trata tanto de los datos como de la pregunta de investigación, así que cuando empieces a explorar en GEE, recuerda tener en mente tus preguntas de investigación (o los objetivos de comunicación científica, ya que la GEE es muy buena para eso también).
+
+## Pregunta de investigación
+
+__Qué porcentaje de cada piso vegetacional esta presente dentro del sistema de áreas protegidas de Chile?__
 
 ## Importar y explorar un conjunto de datos en el GEE - cambio de la cubierta forestal
 
