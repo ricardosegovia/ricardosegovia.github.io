@@ -174,8 +174,10 @@ Map.addLayer(protectedAreas, {color: 'black'}, "protectedAreas", false);
 ```
 
 
-# 7. Calcular el area de cada PISO en km2
+# 7. Analisis
 {: #visualise}
+
+## Calcular el area de cada PISO en km2
 
 En primer lugar, es una buena práctica definir la escala de sus análisis: en nuestro caso, haremos los calculos de area en km2.
 
@@ -372,9 +374,9 @@ head(df_pisos)
 tail(df_pisos)
 ```
 
-![Forest gain and loss bar plots]({{ site.baseurl }}/images/head.png)
+![Pisos mejor representados en Areas Protegidas]({{ site.baseurl }}/images/head.png)
 
-![Forest gain and loss bar plots]({{ site.baseurl }}/images/tail.png)
+![Pisos peor representados en Areas Protegidas]({{ site.baseurl }}/images/tail.png)
 
 
 __Comentarios acerca de la relacion entre ell sistema de areas protegidas y la Biogeografia de Conservacion__
