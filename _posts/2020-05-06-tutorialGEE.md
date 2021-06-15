@@ -124,27 +124,32 @@ Como con cualquier análisis, no se trata tanto de los datos como de la pregunta
 
 ## Pregunta de investigación
 
-__Qué porcentaje de cada piso vegetacional esta presente dentro del sistema de áreas protegidas de Chile?__
+__Qué porcentaje de cada piso vegetacional esta presente dentro del sistema de áreas protegidas de distintas regiones de Chile?__
 
-## Importar y explorar un conjunto de datos en el GEE - cambio de la cubierta forestal
+## Importar y explorar un conjunto de datos en el GEE - pisos vegetacionales
 
-Ahora vamos a importar manualmente un conjunto de datos que no esta disponible en GEE. Descarga en el siguiente link los archivos necesarios para importar la [Clasificacion de Pisos de Vegetación Luebert Pliscoff](http://datos.cedeus.cl/layers/geonode:pisos_vegetacionales_pliscoff).
+Ahora vamos a importar manualmente un conjunto de datos que no esta disponible en GEE. Descarga en el siguiente link los archivos necesarios para importar la [Clasificacion de Pisos de Vegetación Luebert Pliscoff](http://datos.cedeus.cl/layers/geonode:pisos_vegetacionales_pliscoff). Luego importalos en Assets>New, es sube los archivos asociados al .shp.
 
 ![Earth Engine data product information screenshot]({{ site.baseurl }}/images/assets.png)
 
 __Llama al objeto `pisos`, o lo que quieras, pero recuerda que si lo llamas de otra manera, tienes que cambiar `pisos` por tu nuevo nombre en todo el código que viene. A continuación, volveremos a mapear nuestro conjunto de datos.__
 
+Hacer este analisis para todo Chile toma mucho tiempo, asi que vamos a tomar muestras espaciales para discutir los resultados, yo voy a escoger la costa de la Region del Bio Bio, ustedes pueden escoger la que mas les interese.
+
+![Earth Engine data product information screenshot]({{ site.baseurl }}/images/area.png)
+
 ```javascript
-// agrega la capa de pisos_vegetacionales_pliscoff
+// agrega la capa de pisos_vegetacionales_pliscoff restringida a tu area de interes
 //importa pisos asset
-var pisos_data = ee.FeatureCollection("users/segoviacortes/pisos");
+var pisos = ee.FeatureCollection("users/segoviacortes/pisos")
+              .filterBounds(area);
 // visualiza la capa de pisos
 Map.addLayer(pisos);
 ```
 
 ![Earth Engine map output screenshot]({{ site.baseurl }}/images//pisos_prop.png)
 
-Ahora, tenemos los pisos vegetacionales sobre el mapa __anda de nuevo a la pestaña `Inspector`, haz clic en un punto del mapa y comprueba las `características` (properties) de la capa en ese punto en particular.__
+Ahora que tenemos los pisos vegetacionales sobre el mapa, __anda de nuevo a la pestaña `Inspector`, haz clic en un punto del mapa y comprueba las `características` (properties) de la capa en ese punto en particular.__
 
 Puedes activar y desactivar la capa, y puedes "comentar" ciertas partes del código si no quieres que esa acción se realice cada vez que vuelvas a ejecutar el script. Por ejemplo, el mapeo de la capa de pisos vegetacionales lleva bastante tiempo, así que si no quieres hacerlo varias veces, puedes añadir `//` delante de esa línea de código. Siempre puede eliminar el `//` cuando desee volver a mapear esos datos. Así:
 
@@ -156,9 +161,20 @@ Puedes activar y desactivar la capa, y puedes "comentar" ciertas partes del cód
 __Si quieres convertir muchas líneas de código en comentarios o volver a convertir muchos comentarios en código, puedes utilizar un atajo de teclado `Cmd + /` en un `Mac` y `Ctrl + /` en un ordenador `Windows`.__
 
 
+## Importar la capa de areas protegidas, pero esta vez restringiendola a tu area de interes
+
+```javascript
+// Importar nuevamente la capa de areas protegidas, pero mediante
+// una funcion para agregar una nueva funcion de restriccion a nuestra area de interes
+
+var protectedAreas = ee.FeatureCollection('WCMC/WDPA/current/polygons')
+                        .filterBounds(area);
+// Visualiza las areas protegidas dentro de tu area de interes
+Map.addLayer(protectedAreas, {color: 'black'}, "protectedAreas", false);
+```
 
 
-# 6. Visualizar cambio de cobertura forestal
+# 7. Visualizar cambio de cobertura forestal
 {: #visualise}
 
 En primer lugar, es una buena práctica definir la escala de sus análisis: en nuestro caso, es de 30 m, la resolución del conjunto de datos de Global Forest Change. Si un píxel determinado ha sufrido una pérdida de bosque, significa que en algún lugar de ese cuadrado de 30 m x 30 m se ha producido una disminución de la cubierta forestal.
