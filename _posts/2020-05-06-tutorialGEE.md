@@ -128,7 +128,7 @@ __Qué porcentaje de cada piso vegetacional esta presente dentro del sistema de 
 
 ## Importar y explorar un conjunto de datos en el GEE - pisos vegetacionales
 
-Ahora vamos a importar manualmente un conjunto de datos que no esta disponible en GEE. Descarga en el siguiente link los archivos necesarios para importar la [Clasificacion de Pisos de Vegetación Luebert Pliscoff](http://datos.cedeus.cl/layers/geonode:pisos_vegetacionales_pliscoff). Luego importalos en Assets>New, es sube los archivos asociados al .shp.
+Ahora vamos a importar manualmente un conjunto de datos que no esta disponible en GEE. Descarga en el siguiente link los archivos necesarios para importar la [Clasificacion de Pisos de Vegetación Luebert Pliscoff](http://datos.cedeus.cl/layers/geonode:pisos_vegetacionales_pliscoff). Luego importalos en Assets>New, y sube los archivos asociados al .shp.
 
 ![Earth Engine data product information screenshot]({{ site.baseurl }}/images/assets.png)
 
@@ -174,227 +174,207 @@ Map.addLayer(protectedAreas, {color: 'black'}, "protectedAreas", false);
 ```
 
 
-# 7. Visualizar cambio de cobertura forestal
+# 7. Calcular el area de cada PISO en km2
 {: #visualise}
 
-En primer lugar, es una buena práctica definir la escala de sus análisis: en nuestro caso, es de 30 m, la resolución del conjunto de datos de Global Forest Change. Si un píxel determinado ha sufrido una pérdida de bosque, significa que en algún lugar de ese cuadrado de 30 m x 30 m se ha producido una disminución de la cubierta forestal.
+En primer lugar, es una buena práctica definir la escala de sus análisis: en nuestro caso, haremos los calculos de area en km2.
 
-También puede escribir una funcion que detecte automáticamente la resolución del conjunto de datos y la utilice como escala.
-
-Escriba el siguiente código en su script:
+Para calcular el area de cada PISO presente en tu area de interes, escribe el siguiente código en tu script:
 
 ```javascript
-// Ajuste la escala de nuestros cálculos a la escala del conjunto de datos de Hansen
-// que es 30m
-var scale = gfc.projection().nominalScale();
+// Calcular el area de cada piso que esta presente en tu area de interes
+// // Funcion para calcular area
+var addArea = function(feature) {
+
+  return feature.set({areaKm2: feature.geometry().area().divide(1000 * 1000)});
+};
+
+// Aplicar la funcion sobre tu capa pisos restringida
+var pisosArea = pisos.map(addArea);
+
+//revisa la primera fila del archivo generado, debe tener el nombre del piso y su area
+print(pisosArea.first());
+
+var PISOS = pisosArea//.select('areaKm2'); // quita las diagonales para remover informacion extra en el csv
+//revisa cuantos poligonos de pisos estan presentes en tu area de intetres
+print('Number of Polygons of PISOS', PISOS.size());
 ```
 
-__El siguiente paso es crear variables para la cubierta forestal en el año 2000 (cuando se inicia la base de datos), para la pérdida hasta 2016 y la ganancia de cubierta forestal, de nuevo hasta 2016. En los datos ráster, las imágenes suelen tener diferentes "bandas" (por ejemplo, rojo, verde, UV), y podemos seleccionar con qué bandas queremos trabajar. En este caso, las diferentes bandas del objeto `gfc` representan la cubierta forestal, la pérdida de bosque y la ganancia de bosque, por lo que haremos una variable para cada una.__
-
-__Para ello, utilizaremos la función `select()`. Ten en cuenta que, a diferencia de otros lenguajes de programación como `R`, en `JavaScript` pones primero el objeto al que quieres aplicar la función, y luego la función real viene en segundo lugar.__
+En el siguiente paso, vamos a preparar la capa de areas protegidas para poder intersectarla con la capa de Pisos vegetacionales. Para eso, vamos a estimar sus areas en km2 tambien.
 
 ```javascript
-// Crear una variable para la cobertura arbórea original en 2000
-var treeCover = gfc.select(['treecover2000']);
+// Agregar una funcion para mapear el area de las areas protegidas en km2
+var PA = protectedAreas.map(function(feature) {
 
-// Convertir la capa de cobertura arbórea porque el treeCover por defecto está en
-// cientos de hectáreas, pero las capas de pérdida y ganancia son sólo en hectáreas!
+  return feature.set({
+    areaKm2: feature.geometry().area().divide(1000 * 1000)
 
-treeCover = treeCover.divide(100);
-
-// Crear una variable para la pérdida de bosques
-var loss = gfc.select(['loss']);
-
-// Crear una variable para la ganancia de bosque
-var gain = gfc.select(['gain']);
-```
-
-## Hacer un mapa global de la cubierta forestal, la pérdida de bosques y la ganancia de bosques
-
-Ahora que tenemos nuestras tres variables, podemos crear una capa para cada una de ellas y podemos trazarlas con los colores que queramos. Utilizaremos la misma función `Map.addLayer` que antes, pero además de añadir el nombre del objeto, especificaremos los colores y cómo queremos llamar a las capas específicas.
-
-_Tenga en cuenta que también introducimos una nueva función `updateMask()`. Lo que hace es enmascarar las zonas en las que no había cobertura forestal en el año 2000: se vuelven transparentes, por lo que en lugar de sólo oscuridad, podemos ver los mares, los ríos, los contornos de los continentes, etc._
-
-```javascript
-// Añade la capa de cobertura de los árboles en gris claro
-Map.addLayer(treeCover.updateMask(treeCover),
-    {palette: ['D0D0D0', '00FF00'], max: 100}, 'Forest Cover');
-
-// Añadir la capa de pérdida en rosado
-Map.addLayer(loss.updateMask(loss),
-            {palette: ['#BF619D']}, 'Loss');
-
-// Añadir la capa de ganancia en amarillo
-Map.addLayer(gain.updateMask(gain),
-            {palette: ['#CE9E5D']}, 'Gain');
-```
-
-Recuerde hacer clic en "Run" para ver los mapas recién trazados. Las capas del bosque pueden ser más fáciles de ver si desactiva las dos primeras capas que trazó (las áreas protegidas y la capa genérica de GFC), o puede mantener la capa de áreas protegidas, pero reducir la opacidad arrastrando la barra debajo de esa capa.
-
-![Maps example]({{ site.baseurl }}/images/hansen_trio.png)
-
-Puede especificar el color utilizando códigos hexadecimales, que son las combinaciones de números y letras en el código anterior, por ejemplo, `#CE9E5D` es amarillo. Puedes encontrar ejemplos de ellos en Internet, por ejemplo [este sitio website](https://htmlcolorcodes.com).
-
-![Hex colour picker screenshot]({{ site.baseurl }}/images/colours_hex.png)
-
-_También puedes cambiar entre la vista de mapa y la vista de satélite. Si se amplía lo suficiente y se pasa a la vista de satélite, se pueden empezar a detectar algunos patrones, como la pérdida de bosques a lo largo de las carreteras en el Amazonas._
-
-![Amazon forest deforestation map]({{ site.baseurl }}/images/amazon_forest.png)
-
-# 7. Calculaar el cambio en la cobertura forestal en lugares especificos
-{: #calculate}
-
-__Hasta ahora podemos ver dónde se ha producido la pérdida y la ganancia de bosque, por lo que conocemos la _extensión_ del cambio forestal, pero no sabemos la _magnitud_ del cambio forestal, por lo que nuestro siguiente paso es convertir el número de píxeles que han experimentado ganancia o pérdida (recuerde que son sólo valores 0 o 1, 0 para el no, 1 para el sí) en áreas, por ejemplo, kilómetros cuadrados.__
-
-Para cada una de las variables que hemos creado antes (cobertura forestal, pérdida de bosque y ganancia de bosque), crearemos ahora nuevas variables que representen las _áreas_ de cobertura forestal, pérdida y ganancia. Para ello, utilizaremos la función `ee.Image.pixelArea()`, y tenemos que `multiplicar` nuestras variables originales (por ejemplo, `treeCover`), de forma similar a cuando conviertes de metros a centímetros, que multiplicarías por 100. Aquí queremos que el área esté en kilómetros cuadrados, así que para pasar de metros cuadrados a kilómetros cuadrados, también dividiremos por 1 000 000. Por último, seleccionamos la primera banda de nuestras nuevas variables: las áreas de cobertura forestal, pérdida y ganancia, respectivamente.
-
-```javascript
-// Las unidades de las variables son números de píxeles
-// Aquí convertimos los píxeles en superficie real
-// Dividiendo por 1 000 000 para que el resultado final sea en km2
-var areaCover = treeCover.multiply(ee.Image.pixelArea())
-                .divide(1000000).select([0],["areacover"]);
-
-var areaLoss = loss.gt(0).multiply(ee.Image.pixelArea()).multiply(treeCover)
-              .divide(1000000).select([0],["arealoss"]);
-
-var areaGain = gain.gt(0).multiply(ee.Image.pixelArea()).multiply(treeCover)
-              .divide(1000000).select([0],["areagain"]);
-```
-
-### Calcular la pérdida y la ganancia de bosques en zonas específicas
-
-A menudo nos interesa extraer valores de los datos geoespaciales de lugares concretos del mundo. En este caso, nuestra pregunta se refería a los cambios en la cubierta forestal de los parques nacionales, por lo que, para responderla, tenemos que calcular cuánto ha cambiado la cubierta forestal sólo en los parques nacionales que hemos elegido, no en todo el mundo.
-
-El primer paso es crear una variable filtrada que contenga nuestras áreas de interés. En este caso, filtraremos nuestra variable original `parks`, que incluye todas las áreas protegidas del mundo, para reducirlas a sólo cuatro áreas protegidas. Utilizaremos `ee.Filter.or()` para añadir múltiples condiciones de filtrado.
-
-```javascript
-// Crear una variable que tenga los polígonos de sólo unos
-// parques nacionales y reservas naturales
-var parks = parks.filter(ee.Filter.or(
-    ee.Filter.eq("NAME", "Yellowstone"),
-    ee.Filter.eq("NAME", "Sankuru"),
-    ee.Filter.eq("NAME", "Cairngorms"),
-    ee.Filter.eq("NAME", "Redwood")));
-```
-
-Ahora estamos preparados para calcular las áreas de pérdida y ganancia de bosque. Utilizaremos lo que en la jerga de GEE se llama "reducer", una función de resumen. La aplicaremos a nuestra variable "parks" y utilizaremos la escala que hemos definido antes (30 m, la resolución del conjunto de datos). Los resultados se almacenarán en dos nuevas variables, `statsLoss` y `statsGain`.
-
-```javascript
-// Suma los valores de los píxeles de pérdida.
-var statsLoss = areaLoss.reduceRegions({
-  reducer: ee.Reducer.sum(),
-  collection: parks,
-  scale: scale
+  });
 });
 
-// Suma los valores de los píxeles de ganancia.
-var statsGain = areaGain.reduceRegions({
-  reducer: ee.Reducer.sum(),
-  collection: parks,
-  scale: scale
-});
+// remover el exceso de informacion del archivo excepto el area en km2
+var PA = PA.select('areaKm2');
+
+// Revisar cuantas areas protegidas hay en tu area de interes
+print('Number of Polygons of Protected Areas in Chile', PA.size());
+// Revisar una muestra
+print('Sample Protected Areas', PA);
+
 ```
+
+## Calcular el area intersectada
+
+Ahora que tenemos nuestras variables, podemos crear una nueva variable en que calculemos el area de cada poligono de Pisos Vegetacionales que esta dentro de algun Area Protegida
+
+```javascript
+//renombramos las variables para mantener el orden
+var vectors = PISOS;
+var polygons = ee.FeatureCollection(PA);
+
+// Convertimos los pisos en una lista de poligonos
+var vectorList = vectors.toList(vectors.size());
+
+
+// Con esta funcion intersectamos las capas de PISOS y Areas Protegidas
+var polyIntersect = polygons.iterate(function(feature, list){
+  list = ee.List(list);
+  feature = ee.Feature(feature);
+
+  var intersection = vectorList.map(function(feat) {
+    feat = ee.Feature(feat);
+    var intersection = feat.intersection(feature, ee.ErrorMargin(1));
+    return ee.Feature(intersection)
+              .set({'Intersect_Area': intersection.area().divide(1000 * 1000)});
+  });
+
+  return list.add(intersection.filter(ee.Filter.gt('Intersect_Area', 0)));
+}, ee.List([]));
+
+var polyIntersect = ee.FeatureCollection(ee.List(polyIntersect).flatten());
+
+// get inforamtion on Intersection areas
+print('Poligonos Intersectados: ', polyIntersect);
+```
+
+Recuerde hacer clic en "Run" para revisar que el script funcione correctamente
 
 # 8. Exportar resultados - Crear tablas
 {: #export}
 
-En esta fase, hemos calculado las áreas de pérdida y ganancia de bosque en las zonas protegidas que hemos elegido, pero no hemos visto ni visualizado esas cifras.
+En esta fase, hemos calculado las áreas totales para cada Piso Vegetacional y el area de cada uno de ellos que esta protegido en algun area protegida, pero no hemos visto ni visualizado esas cifras.
 
-Podemos exportar archivos `.csv` de nuestros resultados, en este caso irán a tu cuenta de Google Drive. Añade el siguiente código a tu script y pulsa `Run` de nuevo. Verás que se ilumina la pestaña `Task`. Tendrás dos tareas y tendrás que pulsar el botón `Run` junto a ellas (si no las tareas están listas para ti, pero no has iniciado su realización), entonces empezarás a ver un temporizador - que refleja cuánto tiempo ha pasado desde que iniciaste la tarea. Dependiendo de la tarea, puede tardar desde segundos hasta horas. En nuestro caso, deberían ser segundos.
+Podemos exportar archivos `.csv` de nuestros resultados, en este caso irán a tu cuenta de Google Drive. Añade el siguiente código a tu script y pulsa `Run` de nuevo. Verás que se ilumina la pestaña `Task`. Tendrás dos tareas y tendrás que pulsar el botón `Run` junto a ellas (si no las tareas están listas para ti, pero no has iniciado su realización), entonces empezarás a ver un temporizador - que refleja cuánto tiempo ha pasado desde que iniciaste la tarea. Dependiendo de la tarea, puede tardar desde segundos hasta horas. En nuestro caso, deberían ser segundos, tal vez un par de minutos.
 
-__Utilizamos las llaves para especificar qué objeto queremos exportar y cómo queremos llamar al archivo, por ejemplo `NP_forest_loss`.__
+__Utilizamos las llaves para especificar qué objeto queremos exportar y cómo queremos llamar al archivo.__
 
 ```javascript
+//Exportar los archivos generados
+// Exportando la tabla con el calculo de las area para los PISOS
 Export.table.toDrive({
-  collection: statsLoss,
-  description: 'NP_forest_loss'});
+  collection: PISOS,
+  description: 'PISOS_Area_km2',
+  fileFormat: 'CSV'
+});
 
+// Exportando la tabla con las areas intersectadas
 Export.table.toDrive({
-  collection: statsGain,
-  description: 'NP_forest_gain'});
+  collection: polyIntersect,
+  description: 'polyIntersect',
+  fileFormat: 'CSV'
+});
+
 ```
 
 ![Save to Drive screenshot]({{ site.baseurl }}/images/drive.png)
 
-_Ve a ver tus archivos en tu Google Drive. Desplázate hasta la derecha para ver la columna "sum", que muestra el área, en kilómetros cuadrados, de pérdida o ganancia de bosque (dependiendo del archivo que estés viendo)._
+_Ve a ver tus archivos en tu Google Drive. Desplázate hasta la derecha para ver la columna "areaKM2", que muestra el área, en kilómetros cuadrados, del total de cada PISO o del area protegida de cada PISO (dependiendo del archivo que estés viendo)._
 
 # 9. Otros análisis y visualización en R
 {: #R}
 
-_Queremos incorporar diferentes plataformas y lenguajes a nuestros análisis, aprovechando los puntos fuertes de cada uno. Los paquetes `R` y `R`, como `ggplot2`, ofrecen más flexibilidad a la hora de visualizar los resultados, así que ahora nos pasaremos a `R` para hacer un gráfico de barras de la pérdida y la ganancia de bosque en las cuatro áreas protegidas que estudiamos._
+_Queremos incorporar diferentes plataformas y lenguajes a nuestros análisis, aprovechando los puntos fuertes de cada uno. `R` ofrece más flexibilidad a la hora de visualizar los resultados, así que ahora nos pasaremos a `R` para hacer un gráfico de barras del porcetaje de cada Piso Vegetacional protegido en nuestra area de interes._
 
 Nota: También se pueden hacer gráficos en Google Earth Engine, así que esto se reduce a las preferencias personales y lo que funciona mejor para su propio flujo de trabajo. Puedes encontrar tutoriales sobre cómo crear gráficos en GEE en [the Developers website](https://developers.google.com/earth-engine/charts).
 
 _Vamos a R._
 
-```r
-# Load libraries ----
-library(ggplot2)
-devtools::install_github('Mikata-Project/ggthemr') # instalar el ggthemr package
-library(ggthemr)  # Disenar tu propio tema
-library(forcats)  # Para reordenar variaables categoricas
-```
-
-Podemos establecer un tema (cambiar los colores y el fondo) para nuestro gráfico utilizando el paquete `ggthemr`. Puedes explorar las diferentes opciones de color [aqui](https://github.com/cttobin/ggthemr).
-
-```r
-# Establecer el tema de la trama
-ggthemr('dust', type = "outer", layout = "minimal")
-
-# Este tema se aplicará ahora a todas los plots que hagas
-# Para deshacerte de él, utiliza
-# ggthemr_reset()
-
-```
-
 A continuación, establece tu directorio de trabajo en el lugar donde guardaste los datos que exportamos a Google Drive y lee los archivos.
 
 ```r
-# Leer los datos ----
-NP_forest_gain <- read.csv("NP_forest_gain.csv")
-NP_forest_loss <- read.csv("NP_forest_loss.csv")
+##leer el archivo que contiene los datos del area de cada piso vegetacional
+FORMACION<-read.csv("PISOS_Area_km2.csv")
+##borrar la columna .geo
+FORMACION$.geo<-NULL
+##Sumar las areas para cada PISO/FORMACION
+FORMACION2<-as.data.frame(tapply(FORMACION$areaKm2, FORMACION$FORMACION, FUN=sum))
+
+##leer el archivo que contiene los datos del area de cada piso vegetacional presente en elagun area protegida
+intersect_form<-read.csv("polyIntersect.csv")
+##borrar la columna .geo
+intersect_form$.geo<-NULL
+##Sumar las areas para cada PISO/FORMACION
+intersect_form2<-as.data.frame(tapply(intersect_form$Intersect_Area, intersect_form$FORMACION, FUN=sum))
+
+##pegar ambos datos
+df <- merge(FORMACION2, intersect_form2, by="row.names", all=TRUE)
+df[is.na(df)] <- 0
+colnames(df) <- c("formacion","total","protected")
+
 ```
 
-Combinaremos los dos objetos (el de pérdida de bosque y el de ganancia de bosque) para poder visualizarlos en un mismo gráfico. Podemos crear una columna "identificadora" para saber qué valores se refieren a la ganancia y cuáles a la pérdida de cobertura forestal.
+Luego hacemos un grafico de barras simple para mostrar el area protegida de cada FORMACION vegetacional. Vas a tener que ajustar el argumento ylim en ambas funciones de acuerdo a las magnitudes de los pisos/formaciones en tu area de intertes.
 
 ```r
-# Crear una columna de identificación para las ganancias y las pérdidas
-NP_forest_gain$type <- "Gain"
-NP_forest_loss$type <- "Loss"
-
-# Pega los objetos
-forest_change <- rbind(NP_forest_gain, NP_forest_loss)
+#Graficar para area total y area protegida por formacion
+# Use xpd = F para evitar trazar las barras por debajo del eje
+barplot(height=df$total, names=df$formacion, las = 1, col = "white", ylim = c(0, 55000), xpd = F)
+# Permita plottear un nuevo grafico sobre el existente
+par(new = T)
+# grafique los nuevos datos con sin el eje
+barplot(height=df$protected, names=df$formacion, las = 1, col = "red", ylim = c(0, 55000), yaxt = "n")
 ```
 
-Podemos hacer un gráfico de barras para visualizar la cantidad de cubierta forestal perdida y ganada entre 2000 y 2016 en nuestros cuatro lugares de estudio. Dado que un parque nacional más grande puede perder más bosque simplemente porque es más grande (es decir, hay más bosque que perder), podemos visualizar el cambio de bosque como % de la superficie total del parque. Lo hacemos en el código siguiente especificando `y = sum/GIS_AREA`.
+Podemos utilizar la función `pdf` para guardar nuestro gráfico. El archivo se guardará en cualquier directorio de trabajo, que puedes comprobar ejecutando `getwd()` en la consola.
 
 
+![Forest gain and loss bar plots]({{ site.baseurl }}/images/barplot.png)
+
+Dado que los valores son tan bajos, vamos a explorar en una tabla los porcentajes protegidos para cada Piso Vegetacional.
 
 ```r
-(forest_barplot <- ggplot(forest_change, aes(x = NAME, y = sum/GIS_AREA,
-                                             fill = fct_rev(type))) +
-    geom_bar(stat = "identity", position = "dodge") +
-    labs(x = NULL, y = "Forest change (% of park area)\n") +
-    # Expanding the scale removes the emtpy space below the bars
-    scale_y_continuous(expand = c(0, 0)) +
-    theme(text = element_text(size = 16),  # makes font size larger
-          legend.position = c(0.1, 0.85),  # changes the placement of the legend
-          legend.title = element_blank(),  # gets rid of the legend title
-          legend.background = element_rect(color = "black",
-                                           fill = "transparent",   # removes the white background behind the legend
-                                           linetype = "blank")))
+
+##Crear tabla con los porcentajes de area protegida para cada PISO
+##leer el archivo que contiene los datos del area de cada piso vegetacional
+PISOS<-read.csv("PISOS_Area_km2.csv")
+##borrar la columna .geo
+PISOS$.geo<-NULL
+##Sumar las areas para cada PISO/FORMACION
+PISOS2<-as.data.frame(tapply(PISOS$areaKm2, PISOS$PISO, FUN=sum))
+
+##leer el archivo que contiene los datos del area de cada piso vegetacional presente en elagun area protegida
+intersect_piso<-read.csv("polyIntersect.csv")
+##borrar la columna .geo
+intersect_piso$.geo<-NULL
+##Sumar las areas para cada PISO/FORMACION
+intersect_piso2<-as.data.frame(tapply(intersect_piso$Intersect_Area, intersect_piso$PISO, FUN=sum))
+
+##pegar ambos datos
+df_pisos <- merge(PISOS2, intersect_piso2, by="row.names", all=TRUE)
+df_pisos[is.na(df_pisos)] <- 0
+colnames(df_pisos) <- c("piso","total","protected")
+
+
+df_pisos$percentage<-(df_pisos$protected/df_pisos$total)*100
+df_pisos <- df_pisos[order(-df_pisos$percentage),]
+## Asi, primero vamos a ver aquellos Pisos con mas area protegida
+head(df_pisos)
+##Y luego, aquellos con menos area protegida dentro de nuestra area de interes
+tail(df_pisos)
 ```
 
-Tenga en cuenta que al poner todo su código ggplot entre corchetes () se crea el gráfico y luego se muestra en el visor de gráficos. Si no tienes los corchetes, sólo has creado el objeto, pero no lo has visualizado. Entonces tendrías que llamar al objeto para que se visualice simplemente escribiendo `forest_barplot` después de haber creado el objeto "forest_barplot".
+![Forest gain and loss bar plots]({{ site.baseurl }}/images/head.png)
 
-Podemos utilizar la función `ggsave` para guardar nuestro gráfico. El archivo se guardará en cualquier directorio de trabajo, que puedes comprobar ejecutando `getwd()` en la consola.
+![Forest gain and loss bar plots]({{ site.baseurl }}/images/tail.png)
 
-```r
-ggsave(forest_barplot, filename = "forest_barplot.png",
-       height = 5, width = 7)
-```
 
-![Forest gain and loss bar plots]({{ site.baseurl }}/images/forest_barplot.png)
-
-__Ahora que podemos ver la cantidad de bosque que se ha ganado y perdido en nuestras áreas protegidas de interés, podemos volver a nuestra pregunta de investigación original, cómo varía el cambio de bosque entre las áreas protegidas, y podemos ver si podemos detectar algún patrón: ¿hay algún tipo de áreas protegidas que tienen más probabilidades de perder bosque?__
+__Comentarios acerca de la relacion entre ell sistema de areas protegidas y la Biogeografia de Conservacion__
