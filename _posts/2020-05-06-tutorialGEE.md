@@ -373,9 +373,10 @@ head(df_pisos)
 ##Y luego, aquellos con menos area protegida dentro de nuestra area de interes
 tail(df_pisos)
 ```
-
+Pisos mejor representados en Areas Protegidas
 ![Pisos mejor representados en Areas Protegidas]({{ site.baseurl }}/images/head.png)
 
+Pisos peor representados en Areas Protegidas
 ![Pisos peor representados en Areas Protegidas]({{ site.baseurl }}/images/tail.png)
 
 
