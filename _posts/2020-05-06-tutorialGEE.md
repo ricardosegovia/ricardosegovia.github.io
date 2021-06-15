@@ -128,35 +128,34 @@ __Qué porcentaje de cada piso vegetacional esta presente dentro del sistema de 
 
 ## Importar y explorar un conjunto de datos en el GEE - cambio de la cubierta forestal
 
-De forma similar a como importó el conjunto de datos de áreas protegidas, vaya a la pestaña de búsqueda, escriba `Global Forest Change` y seleccione la opción [Hansen et al. dataset](http://science.sciencemag.org/content/342/6160/850).
+Ahora vamos a importar manualmente un conjunto de datos que no esta disponible en GEE. Descarga en el siguiente link los archivos necesarios para importar la [Clasificacion de Pisos de Vegetación Luebert Pliscoff](http://datos.cedeus.cl/layers/geonode:pisos_vegetacionales_pliscoff).
 
-Eche un vistazo a los diferentes tipos de información que contiene este conjunto de datos: eso le ayudará a familiarizarse con lo que puede esperar de los análisis más adelante.
+![Earth Engine data product information screenshot]({{ site.baseurl }}/images/assets.png)
 
-![Earth Engine data product information screenshot]({{ site.baseurl }}/images/hansen_data.png)
-
-__Llama al objeto `gfc`, o lo que quieras, pero recuerda que si lo llamas de otra manera, tienes que cambiar `gfc` por tu nuevo nombre en todo el código que viene. A continuación, volveremos a mapear nuestro conjunto de datos.__
+__Llama al objeto `pisos`, o lo que quieras, pero recuerda que si lo llamas de otra manera, tienes que cambiar `pisos` por tu nuevo nombre en todo el código que viene. A continuación, volveremos a mapear nuestro conjunto de datos.__
 
 ```javascript
-// agrega el Global Forest Change
-Map.addLayer(gfc);
+// agrega la capa de pisos_vegetacionales_pliscoff
+//importa pisos asset
+var pisos_data = ee.FeatureCollection("users/segoviacortes/pisos");
+// visualiza la capa de pisos
+Map.addLayer(pisos);
 ```
 
-![Earth Engine map output screenshot]({{ site.baseurl }}/images//map_hansen.png)
+![Earth Engine map output screenshot]({{ site.baseurl }}/images//pisos_prop.png)
 
-Actualmente, sólo tenemos un mapa negro y rojo - negro para los lugares donde no hay bosques, y rojo de los lugares que tienen cobertura forestal. Esto no es muy informativo y a lo largo del tutorial trabajaremos para mejorar este mapa.
+Ahora, tenemos los pisos vegetacionales sobre el mapa __anda de nuevo a la pestaña `Inspector`, haz clic en un punto del mapa y comprueba las `características` (properties) de la capa en ese punto en particular.__
 
-__Vaya de nuevo a la pestaña `Inspector`, haga clic en un punto del mapa de partes rojas y compruebe las `características` de la capa de cambio de la cubierta forestal. Si dice `pérdida: 0`, `ganancia: 0`, significa que, en este píxel específico, no se ha producido ninguna pérdida o ganancia de bosque.__
-
-También puedes activar y desactivar las capas, y puedes "comentar" ciertas partes del código si no quieres que esa acción se realice cada vez que vuelvas a ejecutar el script. Por ejemplo, el mapeo del conjunto de datos del área protegida lleva bastante tiempo, así que si no quieres hacerlo varias veces, puedes añadir `//` delante de esa línea de código. Siempre puede eliminar el `//` cuando desee volver a mapear esos datos. Así:
+Puedes activar y desactivar la capa, y puedes "comentar" ciertas partes del código si no quieres que esa acción se realice cada vez que vuelvas a ejecutar el script. Por ejemplo, el mapeo de la capa de pisos vegetacionales lleva bastante tiempo, así que si no quieres hacerlo varias veces, puedes añadir `//` delante de esa línea de código. Siempre puede eliminar el `//` cuando desee volver a mapear esos datos. Así:
 
 ```javascript
-// si quieres visualizar las AP en todo el mundo, puedes utilizar
-// Map.addLayer(parks);
+// visualiza la capa de pisos
+// Map.addLayer(pisos);
 ```
 
 __Si quieres convertir muchas líneas de código en comentarios o volver a convertir muchos comentarios en código, puedes utilizar un atajo de teclado `Cmd + /` en un `Mac` y `Ctrl + /` en un ordenador `Windows`.__
 
-Ahora estamos preparados para mejorar nuestro mapa y obtener valores cuantitativos de pérdida y ganancia de bosque.
+
 
 
 # 6. Visualizar cambio de cobertura forestal
