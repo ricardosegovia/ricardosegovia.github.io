@@ -256,7 +256,7 @@ var polyIntersect = polygons.iterate(function(feature, list){
 
 var polyIntersect = ee.FeatureCollection(ee.List(polyIntersect).flatten());
 
-// get inforamtion on Intersection areas
+// Revisa la informacion de los poligonos intersectados
 print('Poligonos Intersectados: ', polyIntersect);
 ```
 
