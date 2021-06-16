@@ -134,14 +134,14 @@ Ahora vamos a importar manualmente un conjunto de datos que no esta disponible e
 
 __Llama al objeto `pisos`, o lo que quieras, pero recuerda que si lo llamas de otra manera, tienes que cambiar `pisos` por tu nuevo nombre en todo el código que viene. A continuación, volveremos a mapear nuestro conjunto de datos.__
 
-Hacer este analisis para todo Chile toma mucho tiempo, asi que vamos a tomar muestras espaciales para discutir los resultados, yo voy a escoger la costa de la Region del Bio Bio, ustedes pueden escoger la que mas les interese. No olvides llamar a poligono "area", su nombre por defecto es "geometry".
+Hacer este analisis para todo Chile toma mucho tiempo, asi que vamos a tomar muestras espaciales para discutir los resultados, yo voy a escoger la costa de la Region del Bio Bio, ustedes pueden escoger la que mas les interese. No olvides llamar a su poligono "area", su nombre por defecto es "geometry".
 
 ![Earth Engine data product information screenshot]({{ site.baseurl }}/images/areas2.png)
 
 ```javascript
 // agrega la capa de pisos_vegetacionales_pliscoff restringida a tu area de interes
 //importa pisos asset
-// Reemplaza segoviacortes, que es mu usuariom por el tuyo. Si no
+// Reemplaza segoviacortes, que es mi usuario por el tuyo. Si no
 // lo recuerdas, puedes verlo en la pestana de scripts.
 var pisos = ee.FeatureCollection("users/segoviacortes/pisos")
               .filterBounds(area);
