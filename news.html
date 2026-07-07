@@ -9,7 +9,7 @@ permalink: /news/
 <div class="collection-intro">
   <p>
     <span data-lang="en">Publications, workshops, and short professional updates kept separate from the blog.</span>
-    <span data-lang="es">Publicaciones, talleres y actualizaciones profesionales breves separadas del blog.</span>
+    <span data-lang="es" hidden>Publicaciones, talleres y actualizaciones profesionales breves separadas del blog.</span>
   </p>
 </div>
 
@@ -22,18 +22,18 @@ permalink: /news/
         <a href="{{ item.url | relative_url }}">
           {% if item.title_en or item.title_es %}
             <span data-lang="en">{% if item.title_en %}{{ item.title_en }}{% else %}{{ item.title }}{% endif %}</span>
-            <span data-lang="es">{% if item.title_es %}{{ item.title_es }}{% else %}{{ item.title }}{% endif %}</span>
+            <span data-lang="es" hidden>{% if item.title_es %}{{ item.title_es }}{% else %}{{ item.title }}{% endif %}</span>
           {% else %}
             {{ item.title }}
           {% endif %}
         </a>
         <p class="item-date">
           <span data-lang="en">{{ item.date | date: "%B %-d, %Y" }}</span>
-          <span data-lang="es">{{ item.date | date: "%-d/%m/%Y" }}</span>
+          <span data-lang="es" hidden>{{ item.date | date: "%-d/%m/%Y" }}</span>
         </p>
         <p class="item-summary">
           <span data-lang="en">{% if item.excerpt_en %}{{ item.excerpt_en }}{% else %}{{ item.content | strip_html | truncate: 180 }}{% endif %}</span>
-          <span data-lang="es">{% if item.excerpt_es %}{{ item.excerpt_es }}{% else %}{{ item.content | strip_html | truncate: 180 }}{% endif %}</span>
+          <span data-lang="es" hidden>{% if item.excerpt_es %}{{ item.excerpt_es }}{% else %}{{ item.content | strip_html | truncate: 180 }}{% endif %}</span>
         </p>
       </li>
     {% endfor %}
@@ -41,6 +41,6 @@ permalink: /news/
 {% else %}
   <p class="empty-state">
     <span data-lang="en">No news items yet.</span>
-    <span data-lang="es">Aun no hay noticias publicadas.</span>
+    <span data-lang="es" hidden>Aun no hay noticias publicadas.</span>
   </p>
 {% endif %}

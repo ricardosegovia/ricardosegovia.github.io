@@ -9,7 +9,7 @@ layout: default
       <h1>
         {% if page.title_en or page.title_es %}
           <span data-lang="en">{% if page.title_en %}{{ page.title_en }}{% else %}{{ page.title }}{% endif %}</span>
-          <span data-lang="es">{% if page.title_es %}{{ page.title_es }}{% else %}{{ page.title }}{% endif %}</span>
+          <span data-lang="es" hidden>{% if page.title_es %}{{ page.title_es }}{% else %}{{ page.title }}{% endif %}</span>
         {% else %}
           {{ page.title }}
         {% endif %}

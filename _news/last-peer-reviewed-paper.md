@@ -12,6 +12,6 @@ excerpt_es: Nuevo articulo publicado en Plants sobre dinamicas de nicho climatic
 New paper published in *Plants*: ["Climatic Niche Dynamics of the Astereae Lineage and Haplopappus Species Distribution following Amphitropical Long-Distance Dispersal"](https://www.mdpi.com/2223-7747/12/14/2721).
 </div>
 
-<div data-lang="es" markdown="1">
+<div data-lang="es" hidden markdown="1">
 Nuevo articulo publicado en *Plants*: ["Climatic Niche Dynamics of the Astereae Lineage and Haplopappus Species Distribution following Amphitropical Long-Distance Dispersal"](https://www.mdpi.com/2223-7747/12/14/2721).
 </div>

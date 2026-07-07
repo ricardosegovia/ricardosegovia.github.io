@@ -2,6 +2,7 @@
   var storageKey = "site-language";
   var supported = ["en", "es"];
   var root = document.documentElement;
+  var segments = document.querySelectorAll("[data-lang]");
   var tabs = document.querySelectorAll("[data-set-language]");
 
   function isSupported(language) {
@@ -42,14 +43,18 @@
       // The selector still works for the current page when storage is unavailable.
     }
 
-    tabs.forEach(function (tab) {
+    Array.prototype.forEach.call(segments, function (segment) {
+      segment.hidden = segment.getAttribute("data-lang") !== language;
+    });
+
+    Array.prototype.forEach.call(tabs, function (tab) {
       var isActive = tab.getAttribute("data-set-language") === language;
       tab.classList.toggle("is-active", isActive);
       tab.setAttribute("aria-pressed", isActive ? "true" : "false");
     });
   }
 
-  tabs.forEach(function (tab) {
+  Array.prototype.forEach.call(tabs, function (tab) {
     tab.addEventListener("click", function () {
       setLanguage(tab.getAttribute("data-set-language"));
     });

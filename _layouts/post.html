@@ -7,7 +7,7 @@ layout: default
     <p class="eyebrow">
       {% if page.content_type == "news" %}
         <span data-lang="en">News</span>
-        <span data-lang="es">Noticias</span>
+        <span data-lang="es" hidden>Noticias</span>
       {% else %}
         Blog
       {% endif %}
@@ -16,7 +16,7 @@ layout: default
     <h1>
       {% if page.title_en or page.title_es %}
         <span data-lang="en">{% if page.title_en %}{{ page.title_en }}{% else %}{{ page.title }}{% endif %}</span>
-        <span data-lang="es">{% if page.title_es %}{{ page.title_es }}{% else %}{{ page.title }}{% endif %}</span>
+        <span data-lang="es" hidden>{% if page.title_es %}{{ page.title_es }}{% else %}{{ page.title }}{% endif %}</span>
       {% else %}
         {{ page.title }}
       {% endif %}
@@ -24,7 +24,7 @@ layout: default
 
     <p class="post-meta">
       <span data-lang="en">Published {{ page.date | date: "%B %-d, %Y" }}</span>
-      <span data-lang="es">Publicado el {{ page.date | date: "%-d/%m/%Y" }}</span>
+      <span data-lang="es" hidden>Publicado el {{ page.date | date: "%-d/%m/%Y" }}</span>
     </p>
   </header>
 

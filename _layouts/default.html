@@ -9,31 +9,37 @@
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <link rel="stylesheet" type="text/css" href="{{ '/style.css' | relative_url }}" />
+    <link rel="stylesheet" type="text/css" href="{{ '/style.css' | relative_url }}?v={{ site.time | date: '%s' }}" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ '/feed.xml' | relative_url }}" />
   </head>
 
   <body>
     <header class="site-header">
       <div class="container masthead">
-        <div class="site-info">
-          <a href="{{ '/' | relative_url }}" class="site-name">{{ site.name }}</a>
-          <p class="site-description">
-            <span data-lang="en">Biodiversity, environment-society, democracy</span>
-            <span data-lang="es">Biodiversidad, ambiente-sociedad, democracia</span>
-          </p>
+        <div class="site-identity">
+          <a href="{{ '/' | relative_url }}" class="site-avatar" aria-label="{{ site.name }}">
+            <img src="{{ '/images/rsegovia.png' | relative_url }}" alt="Ricardo Segovia" />
+          </a>
+
+          <div class="site-info">
+            <a href="{{ '/' | relative_url }}" class="site-name">{{ site.name }}</a>
+            <p class="site-description">
+              <span data-lang="en">Biodiversity, environment-society, democracy</span>
+              <span data-lang="es" hidden>Biodiversidad, ambiente-sociedad, democracia</span>
+            </p>
+          </div>
         </div>
 
         <div class="site-actions">
           <nav class="site-nav" aria-label="Primary">
             <a href="{{ '/' | relative_url }}">
               <span data-lang="en">Home</span>
-              <span data-lang="es">Inicio</span>
+              <span data-lang="es" hidden>Inicio</span>
             </a>
             <a href="{{ '/blog/' | relative_url }}">Blog</a>
             <a href="{{ '/news/' | relative_url }}">
               <span data-lang="en">News</span>
-              <span data-lang="es">Noticias</span>
+              <span data-lang="es" hidden>Noticias</span>
             </a>
             <a href="{{ '/Ricardo_Segovia_CV.pdf' | relative_url }}">CV</a>
             <a href="https://orcid.org/0000-0002-8787-619X">ORCID</a>
@@ -60,6 +66,6 @@
     </footer>
 
     {% include analytics.html %}
-    <script src="{{ '/assets/js/language.js' | relative_url }}" defer></script>
+    <script src="{{ '/assets/js/language.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   </body>
 </html>
