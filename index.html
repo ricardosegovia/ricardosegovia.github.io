@@ -3,116 +3,159 @@ layout: default
 title: Home
 ---
 
+{% assign latest_news = site.news | sort: "date" | reverse %}
+{% assign latest_blog = site.posts | first %}
+
 <div class="language-view" data-lang="en">
-  <section class="intro">
-    <p class="eyebrow">Researcher / Ecology / Biodiversity</p>
+  <div class="home-layout">
+    <div class="home-main">
+      <section class="intro">
+        <p class="eyebrow">Researcher / Ecology / Biodiversity</p>
 
-    <h1>I study biodiversity to understand evolutionary, biogeographic, and social-environmental change.</h1>
+        <p>I study biodiversity to understand evolutionary, biogeographic, and social-environmental change.</p>
 
-    <p class="lede">
-      I am an associate researcher at the <a href="http://www.ieb-chile.cl/en/">Institute of Ecology and Biodiversity</a> in Chile. My work connects biodiversity structure, forest plots, biological collections, and science policy.
-    </p>
+        <p class="lede">
+          I am an associate researcher at the <a href="http://www.ieb-chile.cl/en/">Institute of Ecology and Biodiversity</a> in Chile. My work connects biodiversity structure, forest plots, biological collections, and science policy.
+        </p>
 
-    <p>
-      I am also interested in the scientific study of society-environment relations at global and <a href="https://www.researchgate.net/profile/Jeremy_Anbleyth-Evans/publication/337607903_Toward_marine_democracy_in_Chile_Examining_aquaculture_ecological_impacts_through_common_property_local_ecological_knowledge/links/5de028e24585159aa4518a16/Toward-marine-democracy-in-Chile-Examining-aquaculture-ecological-impacts-through-common-property-local-ecological-knowledge.pdf">local</a> scales, and in the modernization of <a href="https://www.researchgate.net/publication/337831387_EL_FINANCIAMIENTO_DE_LA_INVESTIGACION_EN_EL_CHILE_NEOLIBERAL">science policy in Chile</a>.
-    </p>
-  </section>
+        <p>
+          I am also interested in the scientific study of society-environment relations at global and <a href="https://www.researchgate.net/profile/Jeremy_Anbleyth-Evans/publication/337607903_Toward_marine_democracy_in_Chile_Examining_aquaculture_ecological_impacts_through_common_property_local_ecological_knowledge/links/5de028e24585159aa4518a16/Toward-marine-democracy-in-Chile-Examining-aquaculture-ecological-impacts-through-common-property-local-ecological-knowledge.pdf">local</a> scales, and in the modernization of <a href="https://www.researchgate.net/publication/337831387_EL_FINANCIAMIENTO_DE_LA_INVESTIGACION_EN_EL_CHILE_NEOLIBERAL">science policy in Chile</a>.
+        </p>
+      </section>
 
-  <section class="section" aria-labelledby="projects-heading-en">
-    <div class="section-header">
-      <h2 id="projects-heading-en">Ongoing Projects</h2>
+      <section class="section" aria-labelledby="projects-heading-en">
+        <div class="section-header">
+          <h2 id="projects-heading-en">Ongoing Projects</h2>
+        </div>
+
+        <ul class="plain-list project-list">
+          <li>
+            <h3>Chilean herbaria digitization</h3>
+            <p>In collaboration with the <a href="https://ieb-chile.cl/tipo-de-programa/biodata-y-colecciones-biologicas/">BIODATA team</a>, we are working on the digitization of Chilean herbaria.</p>
+          </li>
+
+          <li>
+            <h3>Machine learning and the global structure of biodiversity</h3>
+            <p>With Diego Arenas from DFKI, the German Research Center for Artificial Intelligence, this project explored biodiversity patterns with support from AI for Earth, Microsoft.</p>
+          </li>
+
+          <li>
+            <h3>Southern South American forest plots</h3>
+            <p>I am building a network of forest plots in Chile to connect with collaborators across the Americas and study species richness at broad scales.</p>
+          </li>
+        </ul>
+      </section>
     </div>
 
-    <ul class="plain-list project-list">
-      <li>
-        <h3>Chilean herbaria digitization</h3>
-        <p>In collaboration with the <a href="https://ieb-chile.cl/tipo-de-programa/biodata-y-colecciones-biologicas/">BIODATA team</a>, we are working on the digitization of Chilean herbaria.</p>
-      </li>
+    <aside class="home-sidebar" aria-label="Latest updates">
+      <section class="sidebar-section" aria-labelledby="latest-news-en">
+        <h2 id="latest-news-en">Latest News</h2>
 
-      <li>
-        <h3>Machine learning and the global structure of biodiversity</h3>
-        <p>With Diego Arenas from DFKI, the German Research Center for Artificial Intelligence, this project explored biodiversity patterns with support from AI for Earth, Microsoft.</p>
-      </li>
+        {% if latest_news.size > 0 %}
+          <ul class="plain-list sidebar-list">
+            {% for item in latest_news limit:3 %}
+              <li>
+                <a href="{{ item.url | relative_url }}">{% if item.title_en %}{{ item.title_en }}{% else %}{{ item.title }}{% endif %}</a>
+                <time class="sidebar-date" datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: "%B %-d, %Y" }}</time>
+              </li>
+            {% endfor %}
+          </ul>
+          <a class="sidebar-more" href="{{ '/news/' | relative_url }}">All news</a>
+        {% else %}
+          <p class="sidebar-empty">No news items yet.</p>
+        {% endif %}
+      </section>
 
-      <li>
-        <h3>Southern South American forest plots</h3>
-        <p>I am building a network of forest plots in Chile to connect with collaborators across the Americas and study species richness at broad scales.</p>
-      </li>
-    </ul>
-  </section>
+      <section class="sidebar-section" aria-labelledby="last-blog-en">
+        <h2 id="last-blog-en">Last Blog</h2>
 
-  <section class="section" aria-labelledby="writing-heading-en">
-    <div class="section-header">
-      <h2 id="writing-heading-en">Writing and Updates</h2>
-    </div>
-
-    <div class="resource-grid">
-      <a class="resource-link" href="{{ '/blog/' | relative_url }}">
-        <span class="resource-title">Blog</span>
-        <span class="resource-copy">Independent essays and notes published on this site.</span>
-      </a>
-
-      <a class="resource-link" href="{{ '/news/' | relative_url }}">
-        <span class="resource-title">News</span>
-        <span class="resource-copy">Short updates, publications, workshops, and announcements.</span>
-      </a>
-    </div>
-  </section>
+        {% if site.posts.size > 0 %}
+          <article class="sidebar-feature">
+            <a href="{{ latest_blog.url | relative_url }}">{% if latest_blog.title_en %}{{ latest_blog.title_en }}{% else %}{{ latest_blog.title }}{% endif %}</a>
+            <time class="sidebar-date" datetime="{{ latest_blog.date | date_to_xmlschema }}">{{ latest_blog.date | date: "%B %-d, %Y" }}</time>
+            <p>{{ latest_blog.excerpt | strip_html | truncate: 130 }}</p>
+          </article>
+        {% else %}
+          <p class="sidebar-empty">Blog posts will appear here.</p>
+        {% endif %}
+      </section>
+    </aside>
+  </div>
 </div>
 
 <div class="language-view" data-lang="es" hidden>
-  <section class="intro">
-    <p class="eyebrow">Investigador / Ecologia / Biodiversidad</p>
+  <div class="home-layout">
+    <div class="home-main">
+      <section class="intro">
+        <p class="eyebrow">Investigador / Ecologia / Biodiversidad</p>
 
-    <h1>Estudio la biodiversidad para comprender cambios evolutivos, biogeograficos y socioambientales.</h1>
+        <p>Estudio la biodiversidad para comprender cambios evolutivos, biogeograficos y socioambientales.</p>
 
-    <p class="lede">
-      Soy investigador asociado del <a href="http://www.ieb-chile.cl/">Instituto de Ecologia y Biodiversidad</a> en Chile. Mi trabajo conecta estructura de la biodiversidad, parcelas forestales, colecciones biologicas y politica cientifica.
-    </p>
+        <p class="lede">
+          Soy investigador asociado del <a href="http://www.ieb-chile.cl/">Instituto de Ecologia y Biodiversidad</a> en Chile. Mi trabajo conecta estructura de la biodiversidad, parcelas forestales, colecciones biologicas y politica cientifica.
+        </p>
 
-    <p>
-      Tambien me interesa el estudio cientifico de las relaciones sociedad-ambiente a escalas globales y <a href="https://www.researchgate.net/profile/Jeremy_Anbleyth-Evans/publication/337607903_Toward_marine_democracy_in_Chile_Examining_aquaculture_ecological_impacts_through_common_property_local_ecological_knowledge/links/5de028e24585159aa4518a16/Toward-marine-democracy-in-Chile-Examining-aquaculture-ecological-impacts-through-common-property-local-ecological-knowledge.pdf">locales</a>, asi como la modernizacion de la <a href="https://www.researchgate.net/publication/337831387_EL_FINANCIAMIENTO_DE_LA_INVESTIGACION_EN_EL_CHILE_NEOLIBERAL">politica cientifica en Chile</a>.
-    </p>
-  </section>
+        <p>
+          Tambien me interesa el estudio cientifico de las relaciones sociedad-ambiente a escalas globales y <a href="https://www.researchgate.net/profile/Jeremy_Anbleyth-Evans/publication/337607903_Toward_marine_democracy_in_Chile_Examining_aquaculture_ecological_impacts_through_common_property_local_ecological_knowledge/links/5de028e24585159aa4518a16/Toward-marine-democracy-in-Chile-Examining-aquaculture-ecological-impacts-through-common-property-local-ecological-knowledge.pdf">locales</a>, asi como la modernizacion de la <a href="https://www.researchgate.net/publication/337831387_EL_FINANCIAMIENTO_DE_LA_INVESTIGACION_EN_EL_CHILE_NEOLIBERAL">politica cientifica en Chile</a>.
+        </p>
+      </section>
 
-  <section class="section" aria-labelledby="projects-heading-es">
-    <div class="section-header">
-      <h2 id="projects-heading-es">Proyectos en Curso</h2>
+      <section class="section" aria-labelledby="projects-heading-es">
+        <div class="section-header">
+          <h2 id="projects-heading-es">Proyectos en Curso</h2>
+        </div>
+
+        <ul class="plain-list project-list">
+          <li>
+            <h3>Digitalizacion de herbarios chilenos</h3>
+            <p>En colaboracion con el <a href="https://ieb-chile.cl/tipo-de-programa/biodata-y-colecciones-biologicas/">equipo BIODATA</a>, trabajamos en la digitalizacion de herbarios chilenos.</p>
+          </li>
+
+          <li>
+            <h3>Aprendizaje automatico y estructura global de la biodiversidad</h3>
+            <p>Junto a Diego Arenas, de DFKI, Centro Aleman de Investigacion en Inteligencia Artificial, este proyecto exploro patrones de biodiversidad con apoyo de AI for Earth, Microsoft.</p>
+          </li>
+
+          <li>
+            <h3>Parcelas forestales del sur de Sudamerica</h3>
+            <p>Estoy construyendo una red de parcelas forestales en Chile para conectarla con colaboradores de las Americas y estudiar la riqueza de especies a amplias escalas.</p>
+          </li>
+        </ul>
+      </section>
     </div>
 
-    <ul class="plain-list project-list">
-      <li>
-        <h3>Digitalizacion de herbarios chilenos</h3>
-        <p>En colaboracion con el <a href="https://ieb-chile.cl/tipo-de-programa/biodata-y-colecciones-biologicas/">equipo BIODATA</a>, trabajamos en la digitalizacion de herbarios chilenos.</p>
-      </li>
+    <aside class="home-sidebar" aria-label="Ultimas actualizaciones">
+      <section class="sidebar-section" aria-labelledby="latest-news-es">
+        <h2 id="latest-news-es">Ultimas Noticias</h2>
 
-      <li>
-        <h3>Aprendizaje automatico y estructura global de la biodiversidad</h3>
-        <p>Junto a Diego Arenas, de DFKI, Centro Aleman de Investigacion en Inteligencia Artificial, este proyecto exploro patrones de biodiversidad con apoyo de AI for Earth, Microsoft.</p>
-      </li>
+        {% if latest_news.size > 0 %}
+          <ul class="plain-list sidebar-list">
+            {% for item in latest_news limit:3 %}
+              <li>
+                <a href="{{ item.url | relative_url }}">{% if item.title_es %}{{ item.title_es }}{% else %}{{ item.title }}{% endif %}</a>
+                <time class="sidebar-date" datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: "%-d/%m/%Y" }}</time>
+              </li>
+            {% endfor %}
+          </ul>
+          <a class="sidebar-more" href="{{ '/news/' | relative_url }}">Todas las noticias</a>
+        {% else %}
+          <p class="sidebar-empty">Aun no hay noticias publicadas.</p>
+        {% endif %}
+      </section>
 
-      <li>
-        <h3>Parcelas forestales del sur de Sudamerica</h3>
-        <p>Estoy construyendo una red de parcelas forestales en Chile para conectarla con colaboradores de las Americas y estudiar la riqueza de especies a amplias escalas.</p>
-      </li>
-    </ul>
-  </section>
+      <section class="sidebar-section" aria-labelledby="last-blog-es">
+        <h2 id="last-blog-es">Ultimo Blog</h2>
 
-  <section class="section" aria-labelledby="writing-heading-es">
-    <div class="section-header">
-      <h2 id="writing-heading-es">Escritura y Actualizaciones</h2>
-    </div>
-
-    <div class="resource-grid">
-      <a class="resource-link" href="{{ '/blog/' | relative_url }}">
-        <span class="resource-title">Blog</span>
-        <span class="resource-copy">Ensayos y notas independientes publicados en este sitio.</span>
-      </a>
-
-      <a class="resource-link" href="{{ '/news/' | relative_url }}">
-        <span class="resource-title">Noticias</span>
-        <span class="resource-copy">Actualizaciones breves, publicaciones, talleres y anuncios.</span>
-      </a>
-    </div>
-  </section>
+        {% if site.posts.size > 0 %}
+          <article class="sidebar-feature">
+            <a href="{{ latest_blog.url | relative_url }}">{% if latest_blog.title_es %}{{ latest_blog.title_es }}{% else %}{{ latest_blog.title }}{% endif %}</a>
+            <time class="sidebar-date" datetime="{{ latest_blog.date | date_to_xmlschema }}">{{ latest_blog.date | date: "%-d/%m/%Y" }}</time>
+            <p>{{ latest_blog.excerpt | strip_html | truncate: 130 }}</p>
+          </article>
+        {% else %}
+          <p class="sidebar-empty">Las entradas del blog apareceran aqui.</p>
+        {% endif %}
+      </section>
+    </aside>
+  </div>
 </div>

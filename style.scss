@@ -26,7 +26,7 @@ body {
 
 .container {
   width: 100%;
-  max-width: 880px;
+  max-width: 1040px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -259,24 +259,117 @@ button {
   }
 }
 
+.home-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 64px;
+  align-items: start;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+.home-main {
+  min-width: 0;
+}
+
 .intro {
   max-width: 780px;
 
-  h1 {
-    max-width: 760px;
-    margin-bottom: 28px;
+  p {
+    font-size: 18px;
+    line-height: 1.65;
   }
+}
+
+.home-sidebar {
+  position: sticky;
+  top: 24px;
+  padding-left: 28px;
+  border-left: 1px solid #e8e8e8;
+
+  @include mobile {
+    position: static;
+    padding-top: 28px;
+    padding-left: 0;
+    border-top: 1px solid #e8e8e8;
+    border-left: 0;
+  }
+}
+
+.sidebar-section + .sidebar-section {
+  margin-top: 34px;
+  padding-top: 26px;
+  border-top: 1px solid #e8e8e8;
+}
+
+.sidebar-section h2 {
+  margin-bottom: 16px;
+  color: #555;
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: .08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.sidebar-list li {
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.sidebar-list li:last-child {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
+.sidebar-list a,
+.sidebar-feature a {
+  display: block;
+  color: $black;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    text-decoration: underline;
+    text-decoration-color: $black;
+  }
+}
+
+.sidebar-date {
+  display: block;
+  margin-top: 6px;
+  color: #777;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.sidebar-feature p,
+.sidebar-empty {
+  margin-top: 10px;
+  margin-bottom: 0;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.sidebar-more {
+  display: inline-block;
+  margin-top: 16px;
+  color: #555;
+  font-size: 14px;
 }
 
 .lede {
   max-width: 720px;
   color: #303030;
-  font-size: 20px;
-  line-height: 1.55;
-
-  @include mobile {
-    font-size: 18px;
-  }
 }
 
 .eyebrow {
