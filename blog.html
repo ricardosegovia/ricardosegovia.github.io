@@ -1,0 +1,50 @@
+---
+layout: page
+title: Blog
+title_en: Blog
+title_es: Blog
+permalink: /blog/
+---
+
+<div class="collection-intro">
+  <p>
+    <span data-lang="en">Independent notes, essays, and reflections published directly on this site.</span>
+    <span data-lang="es">Notas, ensayos y reflexiones independientes publicados directamente en este sitio.</span>
+  </p>
+</div>
+
+{% assign blog_posts = site.posts %}
+
+{% if blog_posts.size > 0 %}
+  <ul class="plain-list item-list">
+    {% for post in blog_posts %}
+      <li>
+        <a href="{{ post.url | relative_url }}">
+          {% if post.title_en or post.title_es %}
+            <span data-lang="en">{% if post.title_en %}{{ post.title_en }}{% else %}{{ post.title }}{% endif %}</span>
+            <span data-lang="es">{% if post.title_es %}{{ post.title_es }}{% else %}{{ post.title }}{% endif %}</span>
+          {% else %}
+            {{ post.title }}
+          {% endif %}
+        </a>
+        <p class="item-date">
+          <span data-lang="en">{{ post.date | date: "%B %-d, %Y" }}</span>
+          <span data-lang="es">{{ post.date | date: "%-d/%m/%Y" }}</span>
+        </p>
+        {% if post.excerpt_en or post.excerpt_es %}
+          <p class="item-summary">
+            <span data-lang="en">{% if post.excerpt_en %}{{ post.excerpt_en }}{% else %}{{ post.excerpt | strip_html | truncate: 180 }}{% endif %}</span>
+            <span data-lang="es">{% if post.excerpt_es %}{{ post.excerpt_es }}{% else %}{{ post.excerpt | strip_html | truncate: 180 }}{% endif %}</span>
+          </p>
+        {% else %}
+          <p class="item-summary">{{ post.excerpt | strip_html | truncate: 180 }}</p>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p class="empty-state">
+    <span data-lang="en">Blog posts will appear here. Add a Markdown file to <code>_posts</code> to publish the first one.</span>
+    <span data-lang="es">Las entradas del blog apareceran aqui. Agrega un archivo Markdown en <code>_posts</code> para publicar la primera.</span>
+  </p>
+{% endif %}

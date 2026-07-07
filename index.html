@@ -1,38 +1,100 @@
 ---
 layout: default
+title: Home
 ---
 
-<p id=“p1” align="justify">
-My research has aimed to identify structural features of biodiversity to understand evolutionary and biogeographic processes. I'm currently an associate researcher in the <a href="http://www.ieb-chile.cl/en/">Institute of Ecology and Biodiversity (Chile)</a>.
-</p>
-<p id=“p2” align="justify">
-In addition, I'm interested in the scientific study of the relationship between societies and environments in global and <a href="https://www.researchgate.net/profile/Jeremy_Anbleyth-Evans/publication/337607903_Toward_marine_democracy_in_Chile_Examining_aquaculture_ecological_impacts_through_common_property_local_ecological_knowledge/links/5de028e24585159aa4518a16/Toward-marine-democracy-in-Chile-Examining-aquaculture-ecological-impacts-through-common-property-local-ecological-knowledge.pdf">local</a> scales.  As a member of the Chilean community of scientists, I'm also interested in <a href="https://www.researchgate.net/publication/337831387_EL_FINANCIAMIENTO_DE_LA_INVESTIGACION_EN_EL_CHILE_NEOLIBERAL">the modernization of the science policy</a> of my country.
-</p>
+<section class="intro">
+  <p class="eyebrow">
+    <span data-lang="en">Researcher / Ecology / Biodiversity</span>
+    <span data-lang="es">Investigador / Ecologia / Biodiversidad</span>
+  </p>
 
-<h3><a name="projects" class="anchor" href="#projects"></a>Ongoing Projects.</h3>
-<ul>
-  <li>
-    <strong>Chilean herbaria digitization </strong> <br />
-    In collaboration with <a href="https://ieb-chile.cl/tipo-de-programa/biodata-y-colecciones-biologicas/">BIODATA team</a>, we are addresing the digitation of the Chilean herbaria.
-  </li>
-  
-  <li>
-    <strong>Machine Learning to state the global structure of Biodiversity </strong> <br />
-    In collaboration with Diego Arenas from DFKI, The German Research Center for Artificial Intelligence, we are working in this project funded by AI for Earth, Microsoft (2019-2021).
-  </li>
+  <h1>
+    <span data-lang="en">I study biodiversity to understand evolutionary, biogeographic, and social-environmental change.</span>
+    <span data-lang="es">Estudio la biodiversidad para comprender cambios evolutivos, biogeograficos y socioambientales.</span>
+  </h1>
 
+  <p class="lede">
+    <span data-lang="en">I am an associate researcher at the <a href="http://www.ieb-chile.cl/en/">Institute of Ecology and Biodiversity</a> in Chile. My work connects biodiversity structure, forest plots, biological collections, and science policy.</span>
+    <span data-lang="es">Soy investigador asociado del <a href="http://www.ieb-chile.cl/">Instituto de Ecologia y Biodiversidad</a> en Chile. Mi trabajo conecta estructura de la biodiversidad, parcelas forestales, colecciones biologicas y politica cientifica.</span>
+  </p>
+
+  <p>
+    <span data-lang="en">I am also interested in the scientific study of society-environment relations at global and <a href="https://www.researchgate.net/profile/Jeremy_Anbleyth-Evans/publication/337607903_Toward_marine_democracy_in_Chile_Examining_aquaculture_ecological_impacts_through_common_property_local_ecological_knowledge/links/5de028e24585159aa4518a16/Toward-marine-democracy-in-Chile-Examining-aquaculture-ecological-impacts-through-common-property-local-ecological-knowledge.pdf">local</a> scales, and in the modernization of <a href="https://www.researchgate.net/publication/337831387_EL_FINANCIAMIENTO_DE_LA_INVESTIGACION_EN_EL_CHILE_NEOLIBERAL">science policy in Chile</a>.</span>
+    <span data-lang="es">Tambien me interesa el estudio cientifico de las relaciones sociedad-ambiente a escalas globales y <a href="https://www.researchgate.net/profile/Jeremy_Anbleyth-Evans/publication/337607903_Toward_marine_democracy_in_Chile_Examining_aquaculture_ecological_impacts_through_common_property_local_ecological_knowledge/links/5de028e24585159aa4518a16/Toward-marine-democracy-in-Chile-Examining-aquaculture-ecological-impacts-through-common-property-local-ecological-knowledge.pdf">locales</a>, asi como la modernizacion de la <a href="https://www.researchgate.net/publication/337831387_EL_FINANCIAMIENTO_DE_LA_INVESTIGACION_EN_EL_CHILE_NEOLIBERAL">politica cientifica en Chile</a>.</span>
+  </p>
+</section>
+
+<section class="section" aria-labelledby="projects-heading">
+  <div class="section-header">
+    <h2 id="projects-heading">
+      <span data-lang="en">Ongoing Projects</span>
+      <span data-lang="es">Proyectos en Curso</span>
+    </h2>
+  </div>
+
+  <ul class="plain-list project-list">
     <li>
-    <strong>Southern South American forest plots</strong> <br />
-    I am building a network of forest plots in Chile that will be integrated with collaborators in the Americas to study variation in species richness at broad scales.
-  </li>
-</ul>
-
-<h3><a name="post" class="anchor" href="#post"></a>News</h3>
-<ul>
-  {% for post in site.posts %}
-    <li>
-    <a href="{{ post.url }}">{{ post.title }}</a>
-      {{ post.excerpt }}
+      <h3>
+        <span data-lang="en">Chilean herbaria digitization</span>
+        <span data-lang="es">Digitalizacion de herbarios chilenos</span>
+      </h3>
+      <p>
+        <span data-lang="en">In collaboration with the <a href="https://ieb-chile.cl/tipo-de-programa/biodata-y-colecciones-biologicas/">BIODATA team</a>, we are working on the digitization of Chilean herbaria.</span>
+        <span data-lang="es">En colaboracion con el <a href="https://ieb-chile.cl/tipo-de-programa/biodata-y-colecciones-biologicas/">equipo BIODATA</a>, trabajamos en la digitalizacion de herbarios chilenos.</span>
+      </p>
     </li>
-  {% endfor %}
-</ul>
+
+    <li>
+      <h3>
+        <span data-lang="en">Machine learning and the global structure of biodiversity</span>
+        <span data-lang="es">Aprendizaje automatico y estructura global de la biodiversidad</span>
+      </h3>
+      <p>
+        <span data-lang="en">With Diego Arenas from DFKI, the German Research Center for Artificial Intelligence, this project explored biodiversity patterns with support from AI for Earth, Microsoft.</span>
+        <span data-lang="es">Junto a Diego Arenas, de DFKI, Centro Aleman de Investigacion en Inteligencia Artificial, este proyecto exploro patrones de biodiversidad con apoyo de AI for Earth, Microsoft.</span>
+      </p>
+    </li>
+
+    <li>
+      <h3>
+        <span data-lang="en">Southern South American forest plots</span>
+        <span data-lang="es">Parcelas forestales del sur de Sudamerica</span>
+      </h3>
+      <p>
+        <span data-lang="en">I am building a network of forest plots in Chile to connect with collaborators across the Americas and study species richness at broad scales.</span>
+        <span data-lang="es">Estoy construyendo una red de parcelas forestales en Chile para conectarla con colaboradores de las Americas y estudiar la riqueza de especies a amplias escalas.</span>
+      </p>
+    </li>
+  </ul>
+</section>
+
+<section class="section" aria-labelledby="writing-heading">
+  <div class="section-header">
+    <h2 id="writing-heading">
+      <span data-lang="en">Writing and Updates</span>
+      <span data-lang="es">Escritura y Actualizaciones</span>
+    </h2>
+  </div>
+
+  <div class="resource-grid">
+    <a class="resource-link" href="{{ '/blog/' | relative_url }}">
+      <span class="resource-title">Blog</span>
+      <span class="resource-copy">
+        <span data-lang="en">Independent essays and notes published on this site.</span>
+        <span data-lang="es">Ensayos y notas independientes publicados en este sitio.</span>
+      </span>
+    </a>
+
+    <a class="resource-link" href="{{ '/news/' | relative_url }}">
+      <span class="resource-title">
+        <span data-lang="en">News</span>
+        <span data-lang="es">Noticias</span>
+      </span>
+      <span class="resource-copy">
+        <span data-lang="en">Short updates, publications, workshops, and announcements.</span>
+        <span data-lang="es">Actualizaciones breves, publicaciones, talleres y anuncios.</span>
+      </span>
+    </a>
+  </div>
+</section>
