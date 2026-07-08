@@ -1,76 +1,45 @@
 ---
-title: Titulo del primer blog
-title_en: First blog post title
-title_es: Titulo del primer blog
+title: Why write this blog
+title_en: Why write this blog
+title_es: Por qué escribir este blog
 date: 2026-07-08
 content_type: blog
-excerpt_en: A short one-sentence summary of the post.
-excerpt_es: Un resumen breve, en una frase, sobre la entrada.
+excerpt_en: A first note on writing in public, preserving professional memory, and making the work behind the final products visible.
+excerpt_es: Una primera nota sobre escribir en público, preservar la memoria profesional y hacer visible el trabajo que queda detrás de los productos finales.
 ---
-
-<!--
-Template de escritura
-
-- Reemplaza los titulos, fecha y resumen.
-- Escribe primero en el idioma que te resulte mas natural.
-- Borra las secciones que no uses.
-- Cuando este listo para publicar, elimina `published: false`.
-- Para que Jekyll lo publique como post, renombra el archivo con este formato:
-  YYYY-MM-DD-titulo-del-post.md
--->
 
 <div data-lang="en" markdown="1">
 
-## Opening idea
+I have decided to write and maintain this blog as an exercise in systematizing what I learn and organizing professional memory.
 
-Start with the core idea in one or two paragraphs. What question, observation, or story makes this worth writing?
+You think you understand something until you try to explain it. Writing the explanation forces you to separate what matters from what is secondary, and it creates time for self-evaluation. I think this operation is a central part of intellectual work.
 
-## Why it matters
+A blog can also become a memory of procedures, the problems encountered, the partial solutions, and the decisions that can later be forgotten. Many lessons are lost, but I hope to recover some of them by writing them down here.
 
-Explain the broader context. Connect the post to biodiversity, ecology, science policy, fieldwork, data, or the social-environmental question behind the piece.
+There is also a professional reason. A CV says where I have been, which projects I have worked on, and which papers I have published. But it does not say how I think. It does not show how I formulate a problem, how I connect evidence with a decision, or how I translate a technical difficulty into a scientific or public question. A blog can show that.
 
-## Main argument
+I am also betting, through this exercise, on saving time. Some questions keep returning, disguised under different names. If those answers take shape as posts, the blog stops being only a place where things are published and becomes a personal, public, revisable library.
 
-Develop the central point of the post.
+Maintaining my own blog also has a strategic dimension. Social media is useful for circulating phrases, enthusiasms, and brief indignations. Here, I hope to build a more stable and professional architecture for my thinking.
 
-- Key point 1:
-- Key point 2:
-- Key point 3:
-
-## Notes, examples, or evidence
-
-Add references, field notes, figures, links, code snippets, or observations that support the argument.
-
-## Closing
-
-End with the idea you want readers to keep thinking about.
+That is why I want to write and maintain this blog: to think in public, to leave traces, to avoid losing everything I have learned, and to share processes that rarely appear in final products. This is not only about communicating better. It is about building my mental clarity and my professional memory.
 
 </div>
 
 <div data-lang="es" hidden markdown="1">
 
-## Idea inicial
+He decidido escribir y mantener este blog como un ejercicio de sistematización de aprendizajes y de organización de la memoria profesional.
 
-Comienza con la idea central en uno o dos parrafos. Que pregunta, observacion o historia hace que valga la pena escribir esta entrada?
+Uno cree que entiende algo hasta que intenta explicarlo. Escribir la explicación obliga a separar lo importante de lo accesorio y da tiempo para la autoevaluación. Pienso que esta operación es una parte central del trabajo intelectual.
 
-## Por que importa
+Un blog también puede ser una forma de memoria de los procedimientos, los problemas encontrados, las soluciones parciales y las decisiones que luego pueden olvidarse. Muchos aprendizajes se pierden, pero espero rescatar algunos al escribirlos aquí.
 
-Explica el contexto general. Conecta la entrada con biodiversidad, ecologia, politica cientifica, trabajo de campo, datos o la pregunta socioambiental detras del texto.
+Hay además una razón profesional. Un currículum dice dónde estuve, qué proyectos hice y qué artículos publiqué. Pero no dice cómo pienso. No dice cómo formulo un problema, cómo conecto una evidencia con una decisión ni cómo traduzco una dificultad técnica en una pregunta científica o pública. Un blog puede mostrar eso.
 
-## Argumento principal
+También apuesto, en este ejercicio, por el ahorro de tiempo. Hay preguntas que vuelven siempre, disfrazadas con distintos nombres. Si esas respuestas se materializan en entradas, el blog deja de ser solo un lugar donde se publica y se convierte en una biblioteca personal, pública y revisable.
 
-Desarrolla el punto central de la entrada.
+Mantener un blog propio tiene, además, una dimensión estratégica. Las redes sociales sirven para circular frases, entusiasmos e indignaciones breves. Espero construir aquí una arquitectura más estable y profesional de mi pensamiento.
 
-- Punto clave 1:
-- Punto clave 2:
-- Punto clave 3:
-
-## Notas, ejemplos o evidencia
-
-Agrega referencias, notas de campo, figuras, enlaces, fragmentos de codigo u observaciones que apoyen el argumento.
-
-## Cierre
-
-Termina con la idea que quieres que las y los lectores sigan pensando.
+Por eso quiero escribir y mantener este blog: para pensar en público, dejar rastros, no perder del todo lo aprendido y compartir procesos que rara vez aparecen en los productos finales. No se trata solo de comunicar mejor. Se trata de construir mi claridad mental y mi memoria profesional.
 
 </div>
