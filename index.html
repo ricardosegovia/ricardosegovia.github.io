@@ -66,15 +66,19 @@ title: Home
         {% endif %}
       </section>
 
-      <section class="sidebar-section" aria-labelledby="last-blog-en">
-        <h2 id="last-blog-en">Last Blog</h2>
+      <section class="sidebar-section" aria-labelledby="latest-posts-en">
+        <h2 id="latest-posts-en">Latest Posts</h2>
 
         {% if site.posts.size > 0 %}
-          <article class="sidebar-feature">
-            <a href="{{ latest_blog.url | relative_url }}">{% if latest_blog.title_en %}{{ latest_blog.title_en }}{% else %}{{ latest_blog.title }}{% endif %}</a>
-            <time class="sidebar-date" datetime="{{ latest_blog.date | date_to_xmlschema }}">{{ latest_blog.date | date: "%B %-d, %Y" }}</time>
-            <p>{{ latest_blog.excerpt | strip_html | truncate: 130 }}</p>
-          </article>
+          <ul class="plain-list sidebar-list">
+            {% for item in site.posts limit:3 %}
+              <li>
+                <a href="{{ item.url | relative_url }}">{% if item.title_en %}{{ item.title_en }}{% else %}{{ item.title }}{% endif %}</a>
+                <time class="sidebar-date" datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: "%B %-d, %Y" }}</time>
+              </li>
+            {% endfor %}
+          </ul>
+          <a class="sidebar-more" href="{{ '/blog/' | relative_url }}">All posts</a>
         {% else %}
           <p class="sidebar-empty">Blog posts will appear here.</p>
         {% endif %}
@@ -143,15 +147,19 @@ title: Home
         {% endif %}
       </section>
 
-      <section class="sidebar-section" aria-labelledby="last-blog-es">
-        <h2 id="last-blog-es">Ultimo Blog</h2>
+      <section class="sidebar-section" aria-labelledby="latest-posts-es">
+        <h2 id="latest-posts-es">Ultimos Posts</h2>
 
         {% if site.posts.size > 0 %}
-          <article class="sidebar-feature">
-            <a href="{{ latest_blog.url | relative_url }}">{% if latest_blog.title_es %}{{ latest_blog.title_es }}{% else %}{{ latest_blog.title }}{% endif %}</a>
-            <time class="sidebar-date" datetime="{{ latest_blog.date | date_to_xmlschema }}">{{ latest_blog.date | date: "%-d/%m/%Y" }}</time>
-            <p>{{ latest_blog.excerpt | strip_html | truncate: 130 }}</p>
-          </article>
+          <ul class="plain-list sidebar-list">
+            {% for item in site.posts limit:3 %}
+              <li>
+                <a href="{{ item.url | relative_url }}">{% if item.title_es %}{{ item.title_es }}{% else %}{{ item.title }}{% endif %}</a>
+                <time class="sidebar-date" datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: "%-d/%m/%Y" }}</time>
+              </li>
+            {% endfor %}
+          </ul>
+          <a class="sidebar-more" href="{{ '/blog/' | relative_url }}">Todos los posts</a>
         {% else %}
           <p class="sidebar-empty">Las entradas del blog apareceran aqui.</p>
         {% endif %}
