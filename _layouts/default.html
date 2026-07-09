@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
+    <title>{% if page.title %}{{ page.title }} / {% endif %}{{ site.name }} / {{ site.description }}</title>
 
     {% include meta.html %}
 
@@ -18,14 +18,14 @@
       <div class="container masthead">
         <div class="site-identity">
           <a href="{{ '/' | relative_url }}" class="site-avatar" aria-label="{{ site.name }}">
-            <img src="{{ '/images/rsegovia.png' | relative_url }}" alt="Ricardo Segovia" />
+            <img src="{{ '/images/web2024-ricardo-segovia.jpg' | relative_url }}" alt="Ricardo Segovia" />
           </a>
 
           <div class="site-info">
             <a href="{{ '/' | relative_url }}" class="site-name">{{ site.name }}</a>
             <p class="site-description">
-              <span data-lang="en">Biodiversity, environment-society, democracy</span>
-              <span data-lang="es" hidden>Biodiversidad, ambiente-sociedad, democracia</span>
+              <span data-lang="en">{{ site.description }}</span>
+              <span data-lang="es" hidden>{{ site.description_es | default: site.description }}</span>
             </p>
           </div>
         </div>

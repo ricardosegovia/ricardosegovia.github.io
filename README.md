@@ -1,3 +1,27 @@
+# Ricardo Segovia Website
+
+This repository is a Jekyll site. Edit the source files, not the generated `_site/` folder.
+
+## Maintenance Map
+
+- Site identity: `_config.yml`
+- Global header and page shell: `_layouts/default.html`
+- Metadata: `_includes/meta.html`
+- Home page content: `index.html`
+- Blog posts: `_posts/`
+- News items: `_news/`
+- Styles: `style.scss` and `_sass/`
+- Generated output: `_site/`
+
+`_site/` is ignored by git and can be stale. Regenerate it with:
+
+```bash
+bundle install
+bundle exec jekyll serve
+```
+
+The visible header uses `name`, `description`, and `description_es` from `_config.yml`. Keep `description` as the English default because Jekyll and GitHub Pages plugins expect that key.
+
 > March, 2016: If you're on an old version of Jekyll Now and run into a) build warnings or b) syntax highlighting issues caused by [Jekyll 3 and GitHub Pages updates](https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0), just :sparkles:[update your _config.yml](https://github.com/barryclark/jekyll-now/pull/445/files):sparkles: and you'll be set!
 
 # Jekyll Now

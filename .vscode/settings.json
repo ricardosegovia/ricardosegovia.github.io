@@ -1,0 +1,14 @@
+{
+  "files.exclude": {
+    "_site": true,
+    ".jekyll": true,
+    ".jekyll-metadata": true,
+    ".sass-cache": true,
+    "Gemfile.lock": true
+  },
+  "search.exclude": {
+    "_site": true,
+    ".jekyll": true,
+    ".sass-cache": true
+  }
+}

@@ -1,7 +1,7 @@
 ---
 title: Why write this blog
-title_en: Why write this blog
-title_es: Por qué escribir este blog
+title_en: Why start this blog
+title_es: Por qué empezar este blog
 date: 2026-07-08
 content_type: blog
 excerpt_en: A first note on writing in public, preserving professional memory, and making the work behind the final products visible.
@@ -10,36 +10,38 @@ excerpt_es: Una primera nota sobre escribir en público, preservar la memoria pr
 
 <div data-lang="en" markdown="1">
 
-I have decided to write and maintain this blog as an exercise in systematizing what I learn and organizing professional memory.
+*Note: This blog was originally written in Spanish, and this English translation was made with AI.*
 
-You think you understand something until you try to explain it. Writing the explanation forces you to separate what matters from what is secondary, and it creates time for self-evaluation. I think this operation is a central part of intellectual work.
+I have decided to write and maintain this blog as an exercise in systematizing my learning and organizing my professional thinking.
 
-A blog can also become a memory of procedures, the problems encountered, the partial solutions, and the decisions that can later be forgotten. Many lessons are lost, but I hope to recover some of them by writing them down here.
+One thinks one understands something until one tries to explain it. Writing the explanation forces me to separate what matters from what is secondary, and it creates time for calm review. I hope this operation becomes a central part of my intellectual work.
 
-There is also a professional reason. A CV says where I have been, which projects I have worked on, and which papers I have published. But it does not say how I think. It does not show how I formulate a problem, how I connect evidence with a decision, or how I translate a technical difficulty into a scientific or public question. A blog can show that.
+I also hope that this blog becomes a kind of professional memory. Many implemented procedures, small problems solved, partial or provisional solutions to larger problems, and the reasons behind decisions taken are forgotten over time. I hope to recover some of these experiences by writing them here.
 
-I am also betting, through this exercise, on saving time. Some questions keep returning, disguised under different names. If those answers take shape as posts, the blog stops being only a place where things are published and becomes a personal, public, revisable library.
+There is also a professional reason. A CV says where I studied, which projects I worked on, and which papers I published, but it does not say how I think. It does not show how I formulate a problem, how I connect evidence with a decision, or how I translate a technical difficulty into a scientific question. I want this blog to help show that part of my identity as a researcher.
 
-Maintaining my own blog also has a strategic dimension. Social media is useful for circulating phrases, enthusiasms, and brief indignations. Here, I hope to build a more stable and professional architecture for my thinking.
+I am also betting, through this exercise, on saving time. There are questions that keep returning in different forms. If the answers to those questions are materialized in posts, this blog becomes my own personal, public, revisable archive.
 
-That is why I want to write and maintain this blog: to think in public, to leave traces, to avoid losing everything I have learned, and to share processes that rarely appear in final products. This is not only about communicating better. It is about building my mental clarity and my professional memory.
+The most strategic dimension of maintaining this blog is turning it into an instrument for making the structure of my thinking more complex. On one hand, publications and scientific presentations help show results in a structured, neutral, and objective way. On the other hand, social media and public interactions serve to circulate subjectivities through short phrases, enthusiasms, and brief indignations. In the blog format, I see an opportunity to develop the component that connects the objective and subjective sides of my professional thinking.
+
+Maintaining this blog will be an exercise in building my mental clarity and my professional memory.
 
 </div>
 
 <div data-lang="es" hidden markdown="1">
 
-He decidido escribir y mantener este blog como un ejercicio de sistematización de aprendizajes y de organización de la memoria profesional.
+He decidido escribir y mantener este blog como un ejercicio de sistematización de mis aprendizajes y de organización de mi pensamiento profesional.
 
-Uno cree que entiende algo hasta que intenta explicarlo. Escribir la explicación obliga a separar lo importante de lo accesorio y da tiempo para la autoevaluación. Pienso que esta operación es una parte central del trabajo intelectual.
+Uno cree que entiende algo hasta que intenta explicarlo. Escribir la explicación obliga a separar lo importante de lo accesorio y da tiempo para una revisión calmada. Espero que esta operación se transforme en una parte central de mi trabajo intelectual.
 
-Un blog también puede ser una forma de memoria de los procedimientos, los problemas encontrados, las soluciones parciales y las decisiones que luego pueden olvidarse. Muchos aprendizajes se pierden, pero espero rescatar algunos al escribirlos aquí.
+Espero también que este blog sea una forma de memoria profesional. Muchos procedimientos implementados, pequeños problemas resueltos, soluciones parciales o provisorias a problemas más grandes y razones detrás de decisiones tomadas se olvidan con el paso del tiempo. Espero rescatar algunas de estas experiencias al escribirlas aquí.
 
-Hay además una razón profesional. Un currículum dice dónde estuve, qué proyectos hice y qué artículos publiqué. Pero no dice cómo pienso. No dice cómo formulo un problema, cómo conecto una evidencia con una decisión ni cómo traduzco una dificultad técnica en una pregunta científica o pública. Un blog puede mostrar eso.
+Hay además una razón de exposición profesional. Un currículum dice dónde estudié, qué proyectos adjudiqué y qué artículos publiqué, pero no dice cómo pienso. No dice cómo formulo un problema, cómo conecto una evidencia con una decisión ni cómo traduzco una dificultad técnica en una pregunta científica. Pretendo que este blog me ayude a mostrar esa parte de mi identidad como investigador.
 
-También apuesto, en este ejercicio, por el ahorro de tiempo. Hay preguntas que vuelven siempre, disfrazadas con distintos nombres. Si esas respuestas se materializan en entradas, el blog deja de ser solo un lugar donde se publica y se convierte en una biblioteca personal, pública y revisable.
+También apuesto, en este ejercicio, por el ahorro de tiempo. Hay preguntas que vuelven siempre en distintas formas. Si las respuestas a estas preguntas se materializan en publicaciones, este blog se convierte en mi propio archivo personal, público y revisable.
 
-Mantener un blog propio tiene, además, una dimensión estratégica. Las redes sociales sirven para circular frases, entusiasmos e indignaciones breves. Espero construir aquí una arquitectura más estable y profesional de mi pensamiento.
+La dimensión más estratégica de mantener este blog es poder transformarlo en un instrumento para complejizar la estructura de mi pensamiento. Por un lado, las publicaciones y las exposiciones científicas ayudan a mostrar resultados de manera estructurada, neutra y objetiva. Por el otro, las redes sociales y las interacciones públicas sirven para circular subjetividades mediante frases, entusiasmos e indignaciones breves. En el formato blog veo una oportunidad de desarrollar el componente que conecte los componentes objetivos y subjetivos de mi pensamiento profesional.
 
-Por eso quiero escribir y mantener este blog: para pensar en público, dejar rastros, no perder del todo lo aprendido y compartir procesos que rara vez aparecen en los productos finales. No se trata solo de comunicar mejor. Se trata de construir mi claridad mental y mi memoria profesional.
+Mantener este blog será un ejercicio de construcción de mi claridad mental y mi memoria profesional.
 
 </div>

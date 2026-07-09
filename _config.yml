@@ -5,8 +5,10 @@
 # Name of your site (displayed in the header)
 name: RICARDO SEGOVIA
 
-# Short bio or description (displayed in the header)
-description: Biodiversity, Environment-Society, Democracy
+# Short bio or description (displayed in the header and metadata)
+# Keep `description` as the canonical English value because Jekyll plugins expect it.
+description: Biodiversity-Data-Conservation
+description_es: Biodiversidad-Datos-Conservación
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: https://avatars.githubusercontent.com/u/10066079?s=400&u=5311816eb5ba5aad967ab2f6bbee4d696181bc19&v=4
