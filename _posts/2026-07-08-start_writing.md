@@ -22,7 +22,7 @@ There is also a professional reason. A CV says where I studied, which projects I
 
 I am also betting, through this exercise, on saving time. There are questions that keep returning in different forms. If the answers to those questions are materialized in posts, this blog becomes my own personal, public, revisable archive.
 
-The most strategic dimension of maintaining this blog is turning it into an instrument for making the structure of my thinking more complex. On one hand, publications and scientific presentations help show results in a structured, neutral, and objective way. On the other hand, social media and public interactions serve to circulate subjectivities through short phrases, enthusiasms, and brief indignations. In the blog format, I see an opportunity to develop the component that connects the objective and subjective sides of my professional thinking.
+The most strategic dimension of maintaining this blog is being able to turn it into an instrument for making the structure of my thinking more complex. On one hand, publications and scientific presentations allow me to communicate in a structured, neutral, and objective way. On the other hand, social media and public interactions serve to circulate subjectivities through short phrases, enthusiasms, and brief indignations. In the blog format, I see an opportunity to develop the connection between the objective and subjective components of my professional thinking.
 
 Maintaining this blog will be an exercise in building my mental clarity and my professional memory.
 
@@ -40,7 +40,7 @@ Hay además una razón de exposición profesional. Un currículum dice dónde es
 
 También apuesto, en este ejercicio, por el ahorro de tiempo. Hay preguntas que vuelven siempre en distintas formas. Si las respuestas a estas preguntas se materializan en publicaciones, este blog se convierte en mi propio archivo personal, público y revisable.
 
-La dimensión más estratégica de mantener este blog es poder transformarlo en un instrumento para complejizar la estructura de mi pensamiento. Por un lado, las publicaciones y las exposiciones científicas ayudan a mostrar resultados de manera estructurada, neutra y objetiva. Por el otro, las redes sociales y las interacciones públicas sirven para circular subjetividades mediante frases, entusiasmos e indignaciones breves. En el formato blog veo una oportunidad de desarrollar el componente que conecte los componentes objetivos y subjetivos de mi pensamiento profesional.
+La dimensión más estratégica de mantener este blog es poder transformarlo en un instrumento para complejizar la estructura de mi pensamiento. Por un lado, las publicaciones y las exposiciones científicas me permiten una comunicación estructurada, neutra y objetiva. Por el otro, las redes sociales y las interacciones públicas sirven para circular subjetividades mediante frases, entusiasmos e indignaciones breves. En el formato blog veo una oportunidad para desarrollar la conexión los componentes objetivos y subjetivos de mi pensamiento profesional.
 
 Mantener este blog será un ejercicio de construcción de mi claridad mental y mi memoria profesional.
 
