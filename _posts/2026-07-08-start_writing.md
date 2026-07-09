@@ -38,9 +38,9 @@ Espero también que este blog sea una forma de memoria profesional. Muchos proce
 
 Hay además una razón de exposición profesional. Un currículum dice dónde estudié, qué proyectos adjudiqué y qué artículos publiqué, pero no dice cómo pienso. No dice cómo formulo un problema, cómo conecto una evidencia con una decisión ni cómo traduzco una dificultad técnica en una pregunta científica. Pretendo que este blog me ayude a mostrar esa parte de mi identidad como investigador.
 
-También apuesto, en este ejercicio, por el ahorro de tiempo. Hay preguntas que vuelven siempre en distintas formas. Si las respuestas a estas preguntas se materializan en publicaciones, este blog se convierte en mi propio archivo personal, público y revisable.
+También apuesto en este ejercicio por el ahorro de tiempo. Hay preguntas que vuelven siempre en distintas formas. Si las respuestas a estas preguntas se materializan en publicaciones, este blog se convierte en mi propio archivo personal, público y revisable.
 
-La dimensión más estratégica de mantener este blog es poder transformarlo en un instrumento para complejizar la estructura de mi pensamiento. Por un lado, las publicaciones y las exposiciones científicas me permiten una comunicación estructurada, neutra y objetiva. Por el otro, las redes sociales y las interacciones públicas sirven para circular subjetividades mediante frases, entusiasmos e indignaciones breves. En el formato blog veo una oportunidad para desarrollar la conexión los componentes objetivos y subjetivos de mi pensamiento profesional.
+La dimensión más estratégica de mantener este blog es poder transformarlo en un instrumento para complejizar la estructura de mi pensamiento. Por un lado, las publicaciones y las exposiciones científicas me permiten una comunicación estructurada, neutra y objetiva. Por el otro, las redes sociales y las interacciones públicas sirven para circular subjetividades mediante frases, entusiasmos e indignaciones breves. En el formato blog veo una oportunidad para desarrollar la conexión de los componentes objetivos y subjetivos de mi pensamiento profesional.
 
 Mantener este blog será un ejercicio de construcción de mi claridad mental y mi memoria profesional.
 
